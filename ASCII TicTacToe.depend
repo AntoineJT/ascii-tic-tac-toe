@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1541247821 source:c:\users\antoinejt\desktop\mes fichiers\développement\c_languages\c\workspace\ascii tictactoe\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
