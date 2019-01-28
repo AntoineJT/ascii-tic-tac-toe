@@ -23,12 +23,24 @@
 				<Compiler>
 					<Add option="-fomit-frame-pointer" />
 					<Add option="-fexpensive-optimizations" />
+					<Add option="-flto" />
 					<Add option="-O3" />
+					<Add option="-Winit-self" />
+					<Add option="-Wredundant-decls" />
+					<Add option="-Wundef" />
+					<Add option="-Wfloat-equal" />
+					<Add option="-Winline" />
+					<Add option="-Wmissing-include-dirs" />
+					<Add option="-Wswitch-default" />
+					<Add option="-Wmain" />
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
+					<Add option="-m32" />
 				</Compiler>
 				<Linker>
+					<Add option="-flto" />
 					<Add option="-s" />
+					<Add option="-m32" />
 				</Linker>
 			</Target>
 			<Target title="Release64">
