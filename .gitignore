@@ -1,0 +1,12 @@
+# Code::Blocks useless files
+*.depend
+*.layout
+
+# Binaries folders
+bin/
+obj/
+
+# Binaries
+*.o
+*.exe
+*.dll
