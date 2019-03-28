@@ -1,8 +1,12 @@
 /*
-    boolean.h
+    Name : boolean.h
+    Author : Antoine James Tournepiche
+    Creation date : January 24th 2019
+    Last update : March 28th 2019
+    Project : ASCII Tic Tac Toe
+    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
+
     boolean header of the ASCII TicTacToe
-    Written by Antoine James Tournepiche
-    01/24/2019 13:21
 */
 
 #ifndef _H_BOOLEAN_
@@ -11,7 +15,7 @@
 	#ifndef __cplusplus
 		#undef true
 		#undef false
-		#define true    1
-		#define false   0
+		#define true 1
+		#define false 0
 	#endif
 #endif
