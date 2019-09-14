@@ -11,8 +11,8 @@
 
 #ifndef _H_BOOLEAN_
 	#define _H_BOOLEAN_
-	typedef unsigned char boolean;
 	#ifndef __cplusplus
+        typedef unsigned char bool;
 		#undef true
 		#undef false
 		#define true 1
