@@ -13,12 +13,16 @@
 #include <stdlib.h>
 #include "boolean.h"
 
+#define LAST_UPDATE "09/14/2019 16:06"
+
 typedef enum {
-    PLAYER_CROSS = 0,
-    PLAYER_CIRCLE = 1,
+    PLAYER_CROSS,
+    PLAYER_CIRCLE,
     PLAYER_NULL,      // Used to indicates when no one get a frame or when it has no winner for now
     PLAYER_UNDEFINED  // Used to indicates when it has equality
 } player;
+
+typedef unsigned int uint;
 
 player plycells[9];
 char grid[9];
@@ -45,7 +49,7 @@ static player getWinner(void){
     )){
         return plycells[8];
     } else {
-        for (register unsigned int i = 0; i < 9; i++){
+        for (uint i = 0; i < 9; i++){
             if (plycells[i] == PLAYER_NULL){
                 return PLAYER_NULL; // No winner for now
             }
@@ -62,7 +66,7 @@ static char* getPlayerName(const player pl){
     }
 }
 
-static bool playCell(const unsigned int cell, const player pl){
+static bool playCell(const uint cell, const player pl){
     if(plycells[cell] != PLAYER_NULL){
         return false;
     }
@@ -71,7 +75,7 @@ static bool playCell(const unsigned int cell, const player pl){
 }
 
 static void printGrid(void){
-    for(unsigned int i = 0; i < 9; i++){
+    for(uint i = 0; i < 9; i++){
         switch(plycells[i]){
             case PLAYER_NULL:   grid[i] = ' '; break;
             case PLAYER_CROSS:  grid[i] = 'X'; break;
@@ -94,13 +98,15 @@ static void printGrid(void){
                 grid[6], grid[7], grid[8]);
 }
 
+#define FLUSH_BUFFER while(getchar() != '\n');
+
 static void input_cell(const player pl, unsigned int *cell){
     bool valid;
     do {
         fputs("Select the cell you want to play : ", stdout);
         valid = scanf("%u", cell) && *cell < 10; // if the input is invalid or out of range, it will ask again to user
         if(!valid){
-            while(getchar() != '\n');
+            FLUSH_BUFFER
             puts("Invalid cell number!");
         } else {
             valid = playCell(*cell, pl);
@@ -116,7 +122,7 @@ static bool input_bool(const char *str){
     char choice;
     do {
         printf("%s [Y/N]\n", str);
-        while(getchar() != '\n');
+        FLUSH_BUFFER
         valid = scanf("%[YyNn]", &choice);
         if(!valid){
             puts("Invalid choice!");
@@ -139,7 +145,7 @@ static inline void init(void){
 #else
     #define CMD_TITLE(_TXT_) // For other platforms than unix and windows
 #endif
-#define LAST_UPDATE "09/14/2019 15:45"
+
 int main(void)
 {
     CMD_TITLE("ASCII Tic Tac Toe - made by Antoine James Tournepiche")
@@ -147,16 +153,19 @@ int main(void)
          "made by Antoine James Tournepiche" "\n"
          "10/21/2018 - " LAST_UPDATE "\n");
     init();
+
     player pl = PLAYER_CROSS; // First player to play
-    unsigned int i = PLAYER_NULL; // Winner, or Cell number (2 usages)
+    player winner = PLAYER_NULL;
+    uint cell_number = -1;
+
     while(1){ // main loop
         printGrid();
-        if (i == PLAYER_NULL){
+        if (winner == PLAYER_NULL){
             printf("It's the turn of the %s player.\n", getPlayerName(pl));
-            input_cell(pl, &i);
-            i = getWinner();
+            input_cell(pl, &cell_number);
+            winner = getWinner();
         } else {
-            if (i == PLAYER_UNDEFINED){
+            if (winner == PLAYER_UNDEFINED){
                 puts("Equality !");
             } else {
                 pl = !pl; // Here is a fix to print the correct winner : here we don't want to print the next player to play, but the last player which has played : the winner
@@ -168,7 +177,8 @@ int main(void)
             } else {
                 exit(EXIT_SUCCESS);
             }
-            i = PLAYER_NULL;
+            winner = PLAYER_NULL;
+            cell_number = -1;
         }
         pl = !pl; // Switch from CIRCLE to CROSS, or from CROSS to CIRCLE
     }
