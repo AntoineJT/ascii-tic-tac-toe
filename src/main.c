@@ -2,7 +2,7 @@
     Name : main.c
     Author : Antoine James Tournepiche
     Creation Date : October 21st 2018
-    Last update : September 14th 2019
+    Last update : December 20th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "boolean.h"
 
-#define LAST_UPDATE "09/14/2019 16:06"
+#define LAST_UPDATE "December 20th 2019"
 
 typedef enum {
     PLAYER_CROSS,
@@ -27,25 +27,33 @@ typedef unsigned int uint;
 player plycells[9];
 char grid[9];
 
+static bool int_3_equals(const int a, const int b, const int c) {
+    return (a == b) && (b == c);
+}
+
+static bool is_cell_line_claimed_by_one_player(const player a, const player b, const player c) {
+    return int_3_equals(plycells[a], plycells[b], plycells[c]);
+}
+
 static player getWinner(void){
     if (plycells[4] != PLAYER_NULL && (
-        (plycells[3] == plycells[4] && plycells[4] == plycells[5])      // HLine 2
-        || (plycells[1] == plycells[4] && plycells[4] == plycells[7])   // VLine 2
-        || (plycells[0] == plycells[4] && plycells[4] == plycells[8])   // DLine '\'
-        || (plycells[2] == plycells[4] && plycells[4] == plycells[6])   // DLine /
+        (is_cell_line_claimed_by_one_player(3, 4, 5))      // HLine 2
+        || (is_cell_line_claimed_by_one_player(1, 4, 7))   // VLine 2
+        || (is_cell_line_claimed_by_one_player(0, 4, 8))   // DLine '\'
+        || (is_cell_line_claimed_by_one_player(2, 4, 6))   // DLine /
     )){
         return plycells[4];
     } else
     if (plycells[0] != PLAYER_NULL && (
-        (plycells[0] == plycells[1] && plycells[1] == plycells[2])      // HLine 1
-        || (plycells[0] == plycells[3] && plycells[3] == plycells[6])   // VLine 1
+        (is_cell_line_claimed_by_one_player(0, 1, 2))      // HLine 1
+        || (is_cell_line_claimed_by_one_player(0, 3, 6))   // VLine 1
     ))
     {
         return plycells[0];
     } else
     if (plycells[8] != PLAYER_NULL && (
-        (plycells[6] == plycells[7] && plycells[7] == plycells[8]) // HLine 3
-        || (plycells[2] == plycells[5] && plycells[5] == plycells[8]) // VLine 3
+        (is_cell_line_claimed_by_one_player(6, 7, 8)) // HLine 3
+        || (is_cell_line_claimed_by_one_player(2, 5, 8)) // VLine 3
     )){
         return plycells[8];
     } else {
@@ -151,7 +159,7 @@ int main(void)
     CMD_TITLE("ASCII Tic Tac Toe - made by Antoine James Tournepiche")
     puts("ASCII Tic Tac Toe" "\n"
          "made by Antoine James Tournepiche" "\n"
-         "10/21/2018 - " LAST_UPDATE "\n");
+         "October 21st 2018 - " LAST_UPDATE "\n");
     init();
 
     player pl = PLAYER_CROSS; // First player to play
