@@ -2,7 +2,7 @@
     Name : boolean.h
     Author : Antoine James Tournepiche
     Creation date : January 24th 2019
-    Last update : March 28th 2019
+    Last update : December 20th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -11,11 +11,8 @@
 
 #ifndef _H_BOOLEAN_
 	#define _H_BOOLEAN_
-	#ifndef __cplusplus
-        typedef unsigned char bool;
-		#undef true
-		#undef false
-		#define true 1
-		#define false 0
-	#endif
+    typedef enum {
+        false = 0,
+        true = 1
+    } bool;
 #endif
