@@ -5,6 +5,7 @@
 
 # Visual Studio generated files
 .vs/
+enc_temp_folder/
 CMakeSettings.json
 
 # CLion generated files
