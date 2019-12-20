@@ -1,12 +1,22 @@
-# Code::Blocks useless files
+# Code::Blocks generated files
 *.depend
 *.layout
+*.cbp
 
-# Binaries folders
-bin/
-obj/
+# Visual Studio generated files
+.vs/
+CMakeSettings.json
+
+# CLion generated files
+.idea/
+
+# CMake
+cmake*/
 
 # Binaries
 *.o
 *.exe
 *.dll
+bin/
+obj/
+out/
