@@ -24,41 +24,43 @@ typedef enum {
 
 typedef unsigned int uint;
 
-player plycells[9];
-char grid[9];
+typedef struct ttt_board {
+    player plycells[9];
+    char grid[9];
+} ttt_board;
 
 static bool int_3_equals(const int a, const int b, const int c) {
     return (a == b) && (b == c);
 }
 
-static bool is_cell_line_claimed_by_one_player(const player a, const player b, const player c) {
-    return int_3_equals(plycells[a], plycells[b], plycells[c]);
+static bool is_cell_line_claimed_by_one_player(ttt_board board, const player a, const player b, const player c) {
+    return int_3_equals(board.plycells[a], board.plycells[b], board.plycells[c]);
 }
 
-static player get_winner(void){
-    if (plycells[4] != PLAYER_NULL && (
-        (is_cell_line_claimed_by_one_player(3, 4, 5))      // HLine 2
-        || (is_cell_line_claimed_by_one_player(1, 4, 7))   // VLine 2
-        || (is_cell_line_claimed_by_one_player(0, 4, 8))   // DLine '\'
-        || (is_cell_line_claimed_by_one_player(2, 4, 6))   // DLine /
+static player get_winner(const ttt_board board){
+    if (board.plycells[4] != PLAYER_NULL && (
+        (is_cell_line_claimed_by_one_player(board, 3, 4, 5))      // HLine 2
+        || (is_cell_line_claimed_by_one_player(board, 1, 4, 7))   // VLine 2
+        || (is_cell_line_claimed_by_one_player(board, 0, 4, 8))   // DLine '\'
+        || (is_cell_line_claimed_by_one_player(board, 2, 4, 6))   // DLine /
     )){
-        return plycells[4];
+        return board.plycells[4];
     } else
-    if (plycells[0] != PLAYER_NULL && (
-        (is_cell_line_claimed_by_one_player(0, 1, 2))      // HLine 1
-        || (is_cell_line_claimed_by_one_player(0, 3, 6))   // VLine 1
+    if (board.plycells[0] != PLAYER_NULL && (
+        (is_cell_line_claimed_by_one_player(board, 0, 1, 2))      // HLine 1
+        || (is_cell_line_claimed_by_one_player(board, 0, 3, 6))   // VLine 1
     ))
     {
-        return plycells[0];
+        return board.plycells[0];
     } else
-    if (plycells[8] != PLAYER_NULL && (
-        (is_cell_line_claimed_by_one_player(6, 7, 8)) // HLine 3
-        || (is_cell_line_claimed_by_one_player(2, 5, 8)) // VLine 3
+    if (board.plycells[8] != PLAYER_NULL && (
+        (is_cell_line_claimed_by_one_player(board, 6, 7, 8)) // HLine 3
+        || (is_cell_line_claimed_by_one_player(board, 2, 5, 8)) // VLine 3
     )){
-        return plycells[8];
+        return board.plycells[8];
     } else {
         for (uint i = 0; i < 9; i++){
-            if (plycells[i] == PLAYER_NULL){
+            if (board.plycells[i] == PLAYER_NULL){
                 return PLAYER_NULL; // No winner for now
             }
         }
@@ -74,20 +76,20 @@ static char* get_player_name(const player pl){
     }
 }
 
-static bool play_cell(const uint cell, const player pl){
-    if(plycells[cell] != PLAYER_NULL){
+static bool play_cell(ttt_board *board, const uint cell, const player pl){
+    if((*board).plycells[cell] != PLAYER_NULL){
         return false;
     }
-    plycells[cell] = pl;
+    (*board).plycells[cell] = pl;
     return true;
 }
 
-static void print_grid(void){
+static void print_grid(ttt_board *board){
     for(uint i = 0; i < 9; i++){
-        switch(plycells[i]){
-            case PLAYER_NULL:   grid[i] = ' '; break;
-            case PLAYER_CROSS:  grid[i] = 'X'; break;
-            case PLAYER_CIRCLE: grid[i] = 'O'; break;
+        switch((*board).plycells[i]){
+            case PLAYER_NULL:   (*board).grid[i] = ' '; break;
+            case PLAYER_CROSS:  (*board).grid[i] = 'X'; break;
+            case PLAYER_CIRCLE: (*board).grid[i] = 'O'; break;
             default: return;
         }
     }
@@ -101,14 +103,14 @@ static void print_grid(void){
            "|**6**|**7**|**8**|" "\n"
            "|  %c  |  %c  |  %c  |" "\n"
            "|_____|_____|_____|" "\n",
-                grid[0], grid[1], grid[2],
-                grid[3], grid[4], grid[5],
-                grid[6], grid[7], grid[8]);
+                (*board).grid[0], (*board).grid[1], (*board).grid[2],
+                (*board).grid[3], (*board).grid[4], (*board).grid[5],
+                (*board).grid[6], (*board).grid[7], (*board).grid[8]);
 }
 
 #define FLUSH_BUFFER while(getchar() != '\n');
 
-static void input_cell(const player pl, unsigned int *cell){
+static void input_cell(const ttt_board *board, const player pl, unsigned int *cell){
     bool valid;
     do {
         fputs("Select the cell you want to play : ", stdout);
@@ -117,7 +119,7 @@ static void input_cell(const player pl, unsigned int *cell){
             FLUSH_BUFFER
             puts("Invalid cell number!");
         } else {
-            valid = play_cell(*cell, pl);
+            valid = play_cell(board, *cell, pl);
             if(!valid){
                 puts("This Cell is already owned!");
             }
@@ -140,9 +142,9 @@ static bool input_bool(const char *str){
     return (choice == 'Y' || choice == 'y');
 }
 
-static inline void init(void){
+static void initialize_cells(ttt_board *board){
     for (int i = 0; i < 9; i++){
-        plycells[i] = PLAYER_NULL;
+        (*board).plycells[i] = PLAYER_NULL;
     }
 }
 
@@ -166,24 +168,35 @@ static player ttt_get_opponent(const player pl) {
     #define CMD_TITLE(_TXT_) // For other platforms than unix and windows
 #endif
 
+static ttt_board *create_ttt_board(void) {
+    ttt_board* board_ptr = malloc(sizeof(ttt_board));
+    if (board_ptr == NULL) {
+        return NULL;
+    }
+    return board_ptr;
+}
+
 int main(void)
 {
     CMD_TITLE("ASCII Tic Tac Toe - made by Antoine James Tournepiche")
     puts("ASCII Tic Tac Toe" "\n"
          "made by Antoine James Tournepiche" "\n"
          "October 21st 2018 - " LAST_UPDATE "\n");
-    init();
+
+    ttt_board *board = create_ttt_board();
+
+    initialize_cells(board);
 
     player pl = PLAYER_CROSS; // First player to play
     player winner = PLAYER_NULL;
     uint cell_number = -1;
 
     while(1){ // main loop
-        print_grid();
+        print_grid(board);
         if (winner == PLAYER_NULL){
             printf("It's the turn of the %s player.\n", get_player_name(pl));
-            input_cell(pl, &cell_number);
-            winner = get_winner();
+            input_cell(board, pl, &cell_number);
+            winner = get_winner(*board);
         } else {
             if (winner == PLAYER_UNDEFINED){
                 puts("Equality !");
@@ -193,7 +206,7 @@ int main(void)
             }
             // reset code
             if(input_bool("Do you want to restart a game ?")){
-                init();
+                initialize_cells(board);
             } else {
                 exit(EXIT_SUCCESS);
             }
