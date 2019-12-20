@@ -125,6 +125,7 @@ static void input_cell(const player pl, unsigned int *cell){
     } while(!valid);
 }
 
+// Stack is corrupted here : need to check!
 static bool input_bool(const char *str){
     bool valid;
     char choice;
@@ -142,6 +143,17 @@ static bool input_bool(const char *str){
 static inline void init(void){
     for (int i = 0; i < 9; i++){
         plycells[i] = PLAYER_NULL;
+    }
+}
+
+static player ttt_get_opponent(const player pl) {
+    switch (pl) {
+        case PLAYER_CIRCLE: return PLAYER_CROSS;
+        case PLAYER_CROSS: return PLAYER_CIRCLE;
+        case PLAYER_NULL:
+        case PLAYER_UNDEFINED:
+        default:
+            return PLAYER_NULL;
     }
 }
 
@@ -176,7 +188,7 @@ int main(void)
             if (winner == PLAYER_UNDEFINED){
                 puts("Equality !");
             } else {
-                pl = !pl; // Here is a fix to print the correct winner : here we don't want to print the next player to play, but the last player which has played : the winner
+                pl = ttt_get_opponent(pl); // Here is a fix to print the correct winner : here we don't want to print the next player to play, but the last player which has played : the winner
                 printf("The player %s has WIN!\n", getPlayerName(pl));
             }
             // reset code
