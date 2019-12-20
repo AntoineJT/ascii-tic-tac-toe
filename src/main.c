@@ -25,7 +25,7 @@ typedef enum {
 typedef unsigned int uint;
 
 typedef struct ttt_board {
-    player plycells[9];
+    player cell_owner[9];
     char grid[9];
 } ttt_board;
 
@@ -34,33 +34,33 @@ static bool int_3_equals(const int a, const int b, const int c) {
 }
 
 static bool is_cell_line_claimed_by_one_player(ttt_board board, const player a, const player b, const player c) {
-    return int_3_equals(board.plycells[a], board.plycells[b], board.plycells[c]);
+    return int_3_equals(board.cell_owner[a], board.cell_owner[b], board.cell_owner[c]);
 }
 
 static player get_winner(const ttt_board board){
-    if (board.plycells[4] != PLAYER_NULL && (
+    if (board.cell_owner[4] != PLAYER_NULL && (
         (is_cell_line_claimed_by_one_player(board, 3, 4, 5))      // HLine 2
         || (is_cell_line_claimed_by_one_player(board, 1, 4, 7))   // VLine 2
         || (is_cell_line_claimed_by_one_player(board, 0, 4, 8))   // DLine '\'
         || (is_cell_line_claimed_by_one_player(board, 2, 4, 6))   // DLine /
     )){
-        return board.plycells[4];
+        return board.cell_owner[4];
     } else
-    if (board.plycells[0] != PLAYER_NULL && (
+    if (board.cell_owner[0] != PLAYER_NULL && (
         (is_cell_line_claimed_by_one_player(board, 0, 1, 2))      // HLine 1
         || (is_cell_line_claimed_by_one_player(board, 0, 3, 6))   // VLine 1
     ))
     {
-        return board.plycells[0];
+        return board.cell_owner[0];
     } else
-    if (board.plycells[8] != PLAYER_NULL && (
+    if (board.cell_owner[8] != PLAYER_NULL && (
         (is_cell_line_claimed_by_one_player(board, 6, 7, 8)) // HLine 3
         || (is_cell_line_claimed_by_one_player(board, 2, 5, 8)) // VLine 3
     )){
-        return board.plycells[8];
+        return board.cell_owner[8];
     } else {
         for (uint i = 0; i < 9; i++){
-            if (board.plycells[i] == PLAYER_NULL){
+            if (board.cell_owner[i] == PLAYER_NULL){
                 return PLAYER_NULL; // No winner for now
             }
         }
@@ -77,16 +77,16 @@ static char* get_player_name(const player pl){
 }
 
 static bool play_cell(ttt_board *board, const uint cell, const player pl){
-    if((*board).plycells[cell] != PLAYER_NULL){
+    if((*board).cell_owner[cell] != PLAYER_NULL){
         return false;
     }
-    (*board).plycells[cell] = pl;
+    (*board).cell_owner[cell] = pl;
     return true;
 }
 
 static void print_grid(ttt_board *board){
     for(uint i = 0; i < 9; i++){
-        switch((*board).plycells[i]){
+        switch((*board).cell_owner[i]){
             case PLAYER_NULL:   (*board).grid[i] = ' '; break;
             case PLAYER_CROSS:  (*board).grid[i] = 'X'; break;
             case PLAYER_CIRCLE: (*board).grid[i] = 'O'; break;
@@ -144,7 +144,7 @@ static bool input_bool(const char *str){
 
 static void initialize_cells(ttt_board *board){
     for (int i = 0; i < 9; i++){
-        (*board).plycells[i] = PLAYER_NULL;
+        (*board).cell_owner[i] = PLAYER_NULL;
     }
 }
 
@@ -193,6 +193,7 @@ int main(void)
 
     while(1){ // main loop
         print_grid(board);
+
         if (winner == PLAYER_NULL){
             printf("It's the turn of the %s player.\n", get_player_name(pl));
             input_cell(board, pl, &cell_number);
@@ -204,16 +205,17 @@ int main(void)
                 pl = ttt_get_opponent(pl); // Here is a fix to print the correct winner : here we don't want to print the next player to play, but the last player which has played : the winner
                 printf("The player %s has WIN!\n", get_player_name(pl));
             }
+
             // reset code
             if(input_bool("Do you want to restart a game ?")){
                 initialize_cells(board);
+                winner = PLAYER_NULL;
+                cell_number = -1;
             } else {
                 exit(EXIT_SUCCESS);
             }
-            winner = PLAYER_NULL;
-            cell_number = -1;
         }
-        pl = !pl; // Switch from CIRCLE to CROSS, or from CROSS to CIRCLE
+        pl = ttt_get_opponent(pl);
     }
     return EXIT_SUCCESS;
 }
