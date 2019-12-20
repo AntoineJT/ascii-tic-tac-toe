@@ -35,7 +35,7 @@ static bool is_cell_line_claimed_by_one_player(const player a, const player b, c
     return int_3_equals(plycells[a], plycells[b], plycells[c]);
 }
 
-static player getWinner(void){
+static player get_winner(void){
     if (plycells[4] != PLAYER_NULL && (
         (is_cell_line_claimed_by_one_player(3, 4, 5))      // HLine 2
         || (is_cell_line_claimed_by_one_player(1, 4, 7))   // VLine 2
@@ -66,7 +66,7 @@ static player getWinner(void){
     }
 }
 
-static char* getPlayerName(const player pl){
+static char* get_player_name(const player pl){
     switch(pl){
         case PLAYER_CROSS: return "Cross";
         case PLAYER_CIRCLE: return "Circle";
@@ -74,7 +74,7 @@ static char* getPlayerName(const player pl){
     }
 }
 
-static bool playCell(const uint cell, const player pl){
+static bool play_cell(const uint cell, const player pl){
     if(plycells[cell] != PLAYER_NULL){
         return false;
     }
@@ -82,7 +82,7 @@ static bool playCell(const uint cell, const player pl){
     return true;
 }
 
-static void printGrid(void){
+static void print_grid(void){
     for(uint i = 0; i < 9; i++){
         switch(plycells[i]){
             case PLAYER_NULL:   grid[i] = ' '; break;
@@ -117,7 +117,7 @@ static void input_cell(const player pl, unsigned int *cell){
             FLUSH_BUFFER
             puts("Invalid cell number!");
         } else {
-            valid = playCell(*cell, pl);
+            valid = play_cell(*cell, pl);
             if(!valid){
                 puts("This Cell is already owned!");
             }
@@ -179,17 +179,17 @@ int main(void)
     uint cell_number = -1;
 
     while(1){ // main loop
-        printGrid();
+        print_grid();
         if (winner == PLAYER_NULL){
-            printf("It's the turn of the %s player.\n", getPlayerName(pl));
+            printf("It's the turn of the %s player.\n", get_player_name(pl));
             input_cell(pl, &cell_number);
-            winner = getWinner();
+            winner = get_winner();
         } else {
             if (winner == PLAYER_UNDEFINED){
                 puts("Equality !");
             } else {
                 pl = ttt_get_opponent(pl); // Here is a fix to print the correct winner : here we don't want to print the next player to play, but the last player which has played : the winner
-                printf("The player %s has WIN!\n", getPlayerName(pl));
+                printf("The player %s has WIN!\n", get_player_name(pl));
             }
             // reset code
             if(input_bool("Do you want to restart a game ?")){
