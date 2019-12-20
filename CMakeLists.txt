@@ -5,6 +5,4 @@ set(CMAKE_C_STANDARD 11)
 
 include_directories(src)
 
-add_executable(ascii_tic_tac_toe
-        src/boolean.h
-        src/main.c)
+add_executable(ascii_tic_tac_toe src/main.c)
