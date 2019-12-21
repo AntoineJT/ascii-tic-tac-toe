@@ -7,6 +7,11 @@
 .vs/
 enc_temp_folder/
 
+# Premake generated project files
+*.sln
+*.vcxproj
+*.vcxproj.*
+
 # CLion generated files
 .idea/
 
@@ -17,3 +22,5 @@ enc_temp_folder/
 bin/
 obj/
 out/
+Debug/
+Release/
