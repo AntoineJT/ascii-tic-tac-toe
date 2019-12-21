@@ -53,7 +53,7 @@ static bool ttt_is_cell_line_claimed_by_one_player(ttt_board board, const player
     return int_3_equals(board.cell_owner[a], board.cell_owner[b], board.cell_owner[c]);
 }
 
-static player get_winner(const ttt_board board)
+static player ttt_get_winner(const ttt_board board)
 {
     if (board.cell_owner[4] != PLAYER_NULL && (
         (ttt_is_cell_line_claimed_by_one_player(board, 3, 4, 5)) // HLine 2
@@ -240,7 +240,7 @@ int main(void)
         {
             printf("It's the turn of the %s player.\n", ttt_get_player_name(pl));
             ttt_input_cell(board, pl, &cell_number);
-            winner = get_winner(*board);
+            winner = ttt_get_winner(*board);
         }
         else
         {
