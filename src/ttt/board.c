@@ -15,15 +15,15 @@
 
 ttt_board* ttt_create_board(void)
 {
-	ttt_board* board_ptr = malloc(sizeof(ttt_board));
-	if (board_ptr == NULL) 
-	{
-		return NULL;
-	}
-	return board_ptr;
+    ttt_board* board_ptr = malloc(sizeof(ttt_board));
+    if (board_ptr == NULL)
+    {
+        return NULL;
+    }
+    return board_ptr;
 }
 
 void ttt_destroy_board(ttt_board* board)
 {
-	free(board);
+    free(board);
 }

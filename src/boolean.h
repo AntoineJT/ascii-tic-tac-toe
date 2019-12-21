@@ -10,9 +10,11 @@
 */
 
 #ifndef _H_BOOLEAN_
-	#define _H_BOOLEAN_
-	typedef enum {
-		false = 0,
-		true = 1
-	} bool;
+#define _H_BOOLEAN_
+
+typedef enum
+{
+    false = 0,
+    true = 1
+} bool;
 #endif

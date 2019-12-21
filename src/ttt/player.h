@@ -10,11 +10,14 @@
 */
 
 #ifndef _H_TTT_PLAYER_
-	#define _H_TTT_PLAYER_
-	typedef enum {
-		PLAYER_CROSS,
-		PLAYER_CIRCLE,
-		PLAYER_NULL,      // Used to indicates when no one get a frame or when it has no winner for now
-		PLAYER_UNDEFINED  // Used to indicates when it has equality
-	} player;
+#define _H_TTT_PLAYER_
+
+typedef enum
+{
+    PLAYER_CROSS,
+    PLAYER_CIRCLE,
+    PLAYER_NULL,
+    // Used to indicates when no one get a frame or when it has no winner for now
+    PLAYER_UNDEFINED // Used to indicates when it has equality
+} player;
 #endif

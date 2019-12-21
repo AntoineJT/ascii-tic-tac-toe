@@ -10,14 +10,15 @@
 */
 
 #ifndef _H_TTT_BOARD_
-	#define _H_TTT_BOARD_
-	#include "player.h"
+#define _H_TTT_BOARD_
+#include "player.h"
 
-	typedef struct ttt_board {
-		player cell_owner[9];
-		char grid[9];
-	} ttt_board;
+typedef struct ttt_board
+{
+    player cell_owner[9];
+    char grid[9];
+} ttt_board;
 
-	ttt_board* ttt_create_board(void);
-	void ttt_destroy_board(ttt_board* board);
+ttt_board* ttt_create_board(void);
+void ttt_destroy_board(ttt_board* board);
 #endif
