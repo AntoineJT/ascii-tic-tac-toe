@@ -182,14 +182,6 @@ static bool input_bool(const char* str)
     return (choice == 'Y' || choice == 'y');
 }
 
-static void ttt_initialize_cells(ttt_board* board)
-{
-    for (int i = 0; i < 9; i++)
-    {
-        (*board).cell_owner[i] = PLAYER_NULL;
-    }
-}
-
 static player ttt_get_opponent(const player pl)
 {
     switch (pl)

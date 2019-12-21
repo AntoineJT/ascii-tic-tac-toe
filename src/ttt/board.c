@@ -36,6 +36,14 @@
 #include <stdlib.h>
 #include "board.h"
 
+void ttt_initialize_cells(ttt_board* board)
+{
+    for (int i = 0; i < 9; i++)
+    {
+        (*board).cell_owner[i] = PLAYER_NULL;
+    }
+}
+
 ttt_board* ttt_create_board(void)
 {
     ttt_board* board_ptr = malloc(sizeof(ttt_board));

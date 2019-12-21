@@ -43,6 +43,7 @@ typedef struct ttt_board
     char grid[9];
 } ttt_board;
 
+void ttt_initialize_cells(ttt_board* board);
 ttt_board* ttt_create_board(void);
 void ttt_destroy_board(ttt_board* board);
 #endif
