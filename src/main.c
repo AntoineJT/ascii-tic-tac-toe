@@ -1,12 +1,12 @@
 /*
-	Name : main.c
-	Author : Antoine James Tournepiche
-	Creation Date : October 21st 2018
-	Last update : December 21st 2019
-	Project : ASCII Tic Tac Toe
-	Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
+    Name : main.c
+    Author : Antoine James Tournepiche
+    Creation Date : October 21st 2018
+    Last update : December 21st 2019
+    Project : ASCII Tic Tac Toe
+    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-	Main file of the ASCII TicTacToe
+    Main file of the ASCII TicTacToe
 */
 
 #include <stdio.h>
