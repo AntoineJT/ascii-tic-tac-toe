@@ -36,17 +36,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "boolean.h"
+#include "equals.h"
 #include "ttt/board.h"
 #include "ttt/player.h"
 
 #define LAST_UPDATE "December 21st 2019"
 
 typedef unsigned int uint;
-
-static bool int_3_equals(const int a, const int b, const int c)
-{
-    return (a == b) && (b == c);
-}
 
 static bool ttt_is_cell_line_claimed_by_one_player(ttt_board board, const player a, const player b, const player c)
 {
