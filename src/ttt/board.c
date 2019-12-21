@@ -35,7 +35,6 @@
 
 #include <stdlib.h>
 #include "board.h"
-#include "../boolean.h"
 
 ttt_board* ttt_create_board(void)
 {
