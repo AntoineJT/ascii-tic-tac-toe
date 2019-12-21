@@ -3,6 +3,6 @@ project(ascii_tic_tac_toe C)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(src)
+include_directories(src src/ttt)
 
 add_executable(ascii_tic_tac_toe src/main.c)

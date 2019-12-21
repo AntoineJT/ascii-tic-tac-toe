@@ -12,22 +12,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "boolean.h"
+#include "ttt/board.h"
+#include "ttt/player.h"
 
 #define LAST_UPDATE "December 20th 2019"
 
-typedef enum {
-	PLAYER_CROSS,
-	PLAYER_CIRCLE,
-	PLAYER_NULL,      // Used to indicates when no one get a frame or when it has no winner for now
-	PLAYER_UNDEFINED  // Used to indicates when it has equality
-} player;
-
 typedef unsigned int uint;
-
-typedef struct ttt_board {
-	player cell_owner[9];
-	char grid[9];
-} ttt_board;
 
 static bool int_3_equals(const int a, const int b, const int c) {
 	return (a == b) && (b == c);
@@ -110,7 +100,7 @@ static void print_grid(ttt_board *board){
 
 #define FLUSH_BUFFER while(getchar() != '\n');
 
-static void input_cell(const ttt_board *board, const player pl, unsigned int *cell){
+static void input_cell(ttt_board *board, const player pl, unsigned int *cell){
 	bool valid;
 	do {
 		fputs("Select the cell you want to play : ", stdout);
@@ -167,14 +157,6 @@ static player ttt_get_opponent(const player pl) {
 #else
 	#define CMD_TITLE(_TXT_) // For other platforms than unix and windows
 #endif
-
-static ttt_board *create_ttt_board(void) {
-	ttt_board* board_ptr = malloc(sizeof(ttt_board));
-	if (board_ptr == NULL) {
-		return NULL;
-	}
-	return board_ptr;
-}
 
 int main(void)
 {
