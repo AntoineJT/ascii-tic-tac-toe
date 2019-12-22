@@ -44,12 +44,12 @@
 
 typedef unsigned int uint;
 
-static bool ttt_is_cell_line_claimed_by_one_player(ttt_board board, const player a, const player b, const player c)
+static bool ttt_is_cell_line_claimed_by_one_player(ttt_board board, const ttt_player a, const ttt_player b, const ttt_player c)
 {
     return int_3_equals(board.cell_owner[a], board.cell_owner[b], board.cell_owner[c]);
 }
 
-static player ttt_get_winner(const ttt_board board)
+static ttt_player ttt_get_winner(const ttt_board board)
 {
     if (board.cell_owner[4] != PLAYER_NULL && (
         (ttt_is_cell_line_claimed_by_one_player(board, 3, 4, 5)) // HLine 2
@@ -87,9 +87,9 @@ static player ttt_get_winner(const ttt_board board)
     }
 }
 
-static char* ttt_get_player_name(const player pl)
+static char* ttt_get_player_name(const ttt_player player)
 {
-    switch (pl)
+    switch (player)
     {
     case PLAYER_CROSS: return "Cross";
     case PLAYER_CIRCLE: return "Circle";
@@ -97,13 +97,13 @@ static char* ttt_get_player_name(const player pl)
     }
 }
 
-static bool ttt_play_cell(ttt_board* board, const uint cell, const player pl)
+static bool ttt_play_cell(ttt_board* board, const uint cell, const ttt_player player)
 {
     if ((*board).cell_owner[cell] != PLAYER_NULL)
     {
         return false;
     }
-    (*board).cell_owner[cell] = pl;
+    (*board).cell_owner[cell] = player;
     return true;
 }
 
@@ -139,7 +139,7 @@ static void ttt_print_grid(ttt_board* board)
 
 #define FLUSH_BUFFER while(getchar() != '\n');
 
-static void ttt_input_cell(ttt_board* board, const player pl, unsigned int* cell)
+static void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell)
 {
     bool valid;
     do
@@ -153,7 +153,7 @@ static void ttt_input_cell(ttt_board* board, const player pl, unsigned int* cell
         }
         else
         {
-            valid = ttt_play_cell(board, *cell, pl);
+            valid = ttt_play_cell(board, *cell, player);
             if (!valid)
             {
                 puts("This Cell is already owned!");
@@ -182,9 +182,9 @@ static bool input_bool(const char* str)
     return (choice == 'Y' || choice == 'y');
 }
 
-static player ttt_get_opponent(const player pl)
+static ttt_player ttt_get_opponent(const ttt_player player)
 {
-    switch (pl)
+    switch (player)
     {
     case PLAYER_CIRCLE: return PLAYER_CROSS;
     case PLAYER_CROSS: return PLAYER_CIRCLE;
@@ -215,8 +215,8 @@ int main(void)
 
     ttt_initialize_cells(board);
 
-    player pl = PLAYER_CROSS; // First player to play
-    player winner = PLAYER_NULL;
+    ttt_player player = PLAYER_CROSS; // First player to play
+    ttt_player winner = PLAYER_NULL;
     uint cell_number = -1;
 
     while (1)
@@ -226,8 +226,8 @@ int main(void)
 
         if (winner == PLAYER_NULL)
         {
-            printf("It's the turn of the %s player.\n", ttt_get_player_name(pl));
-            ttt_input_cell(board, pl, &cell_number);
+            printf("It's the turn of the %s player.\n", ttt_get_player_name(player));
+            ttt_input_cell(board, player, &cell_number);
             winner = ttt_get_winner(*board);
         }
         else
@@ -238,9 +238,9 @@ int main(void)
             }
             else
             {
-                pl = ttt_get_opponent(pl);
+                player = ttt_get_opponent(player);
                 // Here is a fix to print the correct winner : here we don't want to print the next player to play, but the last player which has played : the winner
-                printf("The player %s has WIN!\n", ttt_get_player_name(pl));
+                printf("The player %s has WIN!\n", ttt_get_player_name(player));
             }
 
             // reset code
@@ -255,6 +255,6 @@ int main(void)
                 return EXIT_SUCCESS;
             }
         }
-        pl = ttt_get_opponent(pl);
+        player = ttt_get_opponent(player);
     }
 }

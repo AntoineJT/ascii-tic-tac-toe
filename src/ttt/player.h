@@ -43,5 +43,5 @@ typedef enum
     PLAYER_NULL,
     // Used to indicates when no one get a frame or when it has no winner for now
     PLAYER_UNDEFINED // Used to indicates when it has equality
-} player;
+} ttt_player;
 #endif

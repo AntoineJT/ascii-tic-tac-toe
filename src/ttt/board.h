@@ -39,7 +39,7 @@
 
 typedef struct ttt_board
 {
-    player cell_owner[9];
+    ttt_player cell_owner[9];
     char grid[9];
 } ttt_board;
 
