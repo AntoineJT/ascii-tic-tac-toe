@@ -26,7 +26,7 @@
     Name : main.c
     Author : Antoine James Tournepiche
     Creation Date : October 21st 2018
-    Last update : December 21st 2019
+    Last update : December 24th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
   
@@ -40,7 +40,7 @@
 #include "ttt/board.h"
 #include "ttt/player.h"
 
-#define LAST_UPDATE "December 21st 2019"
+#define LAST_UPDATE "December 24th 2019"
 
 typedef unsigned int uint;
 
@@ -107,7 +107,7 @@ static bool ttt_play_cell(ttt_board* board, const uint cell, const ttt_player pl
     return true;
 }
 
-static void ttt_print_grid(ttt_board* board)
+static void ttt_refresh_grid(ttt_board* board)
 {
     for (uint i = 0; i < 9; i++)
     {
@@ -122,6 +122,11 @@ static void ttt_print_grid(ttt_board* board)
         default: return;
         }
     }
+}
+
+static void ttt_print_grid(ttt_board* board)
+{
+    ttt_refresh_grid(board);
     printf(" _________________ " "\n"
            "|**0**|**1**|**2**|" "\n"
            "|  %c  |  %c  |  %c  |" "\n"
