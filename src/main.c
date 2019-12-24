@@ -87,16 +87,6 @@ static ttt_player ttt_get_winner(const ttt_board board)
     }
 }
 
-static char* ttt_get_player_name(const ttt_player player)
-{
-    switch (player)
-    {
-    case PLAYER_CROSS: return "Cross";
-    case PLAYER_CIRCLE: return "Circle";
-    default: return "ERROR";
-    }
-}
-
 static bool ttt_play_cell(ttt_board* board, const uint cell, const ttt_player player)
 {
     if ((*board).cell_owner[cell] != PLAYER_NULL)

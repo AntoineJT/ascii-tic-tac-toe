@@ -22,28 +22,25 @@
  *  SOFTWARE.
  */
 
-/*
-    Name : ttt_game/player.h
-    Author : Antoine James Tournepiche
-    Creation Date : December 20th 2019
-    Last update : December 24th 2019
-    Project : ASCII Tic Tac Toe
-    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
-    
-    TicTacToe player header
-*/
+ /*
+     Name : ttt_game/player.c
+     Author : Antoine James Tournepiche
+     Creation Date : December 24th 2019
+     Last update : December 24th 2019
+     Project : ASCII Tic Tac Toe
+     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-#ifndef _H_TTT_PLAYER_
-#define _H_TTT_PLAYER_
+     TicTacToe player source code file
+ */
 
-typedef enum
+#include "player.h"
+
+char* ttt_get_player_name(const ttt_player player)
 {
-    PLAYER_CROSS,
-    PLAYER_CIRCLE,
-    PLAYER_NULL,
-    // Used to indicates when no one get a frame or when it has no winner for now
-    PLAYER_UNDEFINED // Used to indicates when it has equality
-} ttt_player;
-
-char* ttt_get_player_name(const ttt_player player);
-#endif
+    switch (player)
+    {
+    case PLAYER_CROSS: return "Cross";
+    case PLAYER_CIRCLE: return "Circle";
+    default: return "ERROR";
+    }
+}
