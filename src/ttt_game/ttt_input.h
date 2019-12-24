@@ -23,7 +23,7 @@
  */
 
  /*
-     Name : ttt_game/input.h
+     Name : ttt_game/ttt_input.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
      Last update : December 24th 2019

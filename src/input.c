@@ -23,42 +23,34 @@
  */
 
  /*
-     Name : ttt_game/input.c
+     Name : input.c
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
      Last update : December 24th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-     TicTacToe input source code file
+     One utility file from ASCII Tic Tac Toe
  */
 
 #include <stdio.h>
-#include "../boolean.h"
-#include "../buffer.h"
-#include "board.h"
-#include "player.h"
-#include "game.h"
+#include "boolean.h"
+#include "buffer.h"
 
-void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell)
+// Run-Time Check Failure #2 - Stack around the variable 'choice' was corrupted. a eu lieu 
+bool input_bool(const char* str)
 {
     bool valid;
+    char choice;
     do
     {
-        fputs("Select the cell you want to play : ", stdout);
-        valid = scanf("%u", cell) && *cell < 10; // if the input is invalid or out of range, it will ask again to user
+        printf("%s [Y/N]\n", str);
+        flush_buffer();
+        valid = scanf("%[YyNn]", &choice);
         if (!valid)
         {
-            flush_buffer();
-            puts("Invalid cell number!");
-        }
-        else
-        {
-            valid = ttt_play_cell(board, *cell, player);
-            if (!valid)
-            {
-                puts("This Cell is already owned!");
-            }
+            puts("Invalid choice!");
         }
     } while (!valid);
+    return (choice == 'Y' || choice == 'y');
 }

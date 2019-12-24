@@ -39,9 +39,10 @@
 #include "equals.h"
 #include "buffer.h"
 #include "cmd_title.h"
+#include "input.h"
 #include "ttt_game/board.h"
 #include "ttt_game/player.h"
-#include "ttt_game/input.h"
+#include "ttt_game/ttt_input.h"
 #include "ttt_game/game.h"
 
 #define LAST_UPDATE "December 24th 2019"
@@ -79,25 +80,6 @@ static void ttt_print_grid(ttt_board* board)
            (*board).grid[0], (*board).grid[1], (*board).grid[2],
            (*board).grid[3], (*board).grid[4], (*board).grid[5],
            (*board).grid[6], (*board).grid[7], (*board).grid[8]);
-}
-
-// Stack is corrupted here : need to check!
-static bool input_bool(const char* str)
-{
-    bool valid;
-    char choice;
-    do
-    {
-        printf("%s [Y/N]\n", str);
-        flush_buffer();
-        valid = scanf("%[YyNn]", &choice);
-        if (!valid)
-        {
-            puts("Invalid choice!");
-        }
-    }
-    while (!valid);
-    return (choice == 'Y' || choice == 'y');
 }
 
 int main(void)
