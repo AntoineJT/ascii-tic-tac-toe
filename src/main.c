@@ -38,6 +38,7 @@
 #include "boolean.h"
 #include "equals.h"
 #include "buffer.h"
+#include "cmd_title.h"
 #include "ttt_game/board.h"
 #include "ttt_game/player.h"
 #include "ttt_game/input.h"
@@ -45,11 +46,9 @@
 
 #define LAST_UPDATE "December 24th 2019"
 
-typedef unsigned int uint;
-
 static void ttt_refresh_grid(ttt_board* board)
 {
-    for (uint i = 0; i < 9; i++)
+    for (int i = 0; i < 9; i++)
     {
         switch ((*board).cell_owner[i])
         {
@@ -101,15 +100,6 @@ static bool input_bool(const char* str)
     return (choice == 'Y' || choice == 'y');
 }
 
-#ifdef _WIN32
-#include <windows.h>
-#define CMD_TITLE(_TXT_) SetConsoleTitleA(_TXT_);
-#elif defined(unix)
-	#define CMD_TITLE(_TXT_) printf("%c]0;%s\a", '\033', _TXT_);
-#else
-	#define CMD_TITLE(_TXT_) // For other platforms than unix and windows
-#endif
-
 int main(void)
 {
     CMD_TITLE("ASCII Tic Tac Toe - made by Antoine James Tournepiche")
@@ -123,7 +113,7 @@ int main(void)
 
     ttt_player player = PLAYER_CROSS; // First player to play
     ttt_player winner = PLAYER_NULL;
-    uint cell_number = -1;
+    unsigned int cell_number;
 
     while (1)
     {
