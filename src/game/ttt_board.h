@@ -22,38 +22,29 @@
  *  SOFTWARE.
  */
 
- /*
-     Name : ttt_game/ttt_player.c
-     Author : Antoine James Tournepiche
-     Creation Date : December 24th 2019
-     Last update : December 24th 2019
-     Project : ASCII Tic Tac Toe
-     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
+/*
+    Name : game/ttt_board.h
+    Author : Antoine James Tournepiche
+    Creation Date : December 20th 2019
+    Last update : December 24th 2019
+    Project : ASCII Tic Tac Toe
+    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
+    
+    TicTacToe board header
+*/
 
-     TicTacToe player source code file
- */
+#ifndef _H_TTT_BOARD_
+#define _H_TTT_BOARD_
 
 #include "ttt_player.h"
 
-char* ttt_get_player_name(const ttt_player player)
+typedef struct ttt_board
 {
-    switch (player)
-    {
-    case PLAYER_CROSS: return "Cross";
-    case PLAYER_CIRCLE: return "Circle";
-    default: return "ERROR";
-    }
-}
+    ttt_player cell_owner[9];
+    char grid[9];
+} ttt_board;
 
-ttt_player ttt_get_opponent(const ttt_player player)
-{
-    switch (player)
-    {
-    case PLAYER_CIRCLE: return PLAYER_CROSS;
-    case PLAYER_CROSS: return PLAYER_CIRCLE;
-    case PLAYER_NULL:
-    case PLAYER_UNDEFINED:
-    default:
-        return PLAYER_NULL;
-    }
-}
+ttt_board* ttt_create_board(void);
+void ttt_initialize_cells(ttt_board* board);
+void ttt_destroy_board(ttt_board* board);
+#endif

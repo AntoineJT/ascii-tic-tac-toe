@@ -23,7 +23,7 @@
  */
 
  /*
-     Name : ttt_game/ttt_game.h
+     Name : game/ttt_game.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
      Last update : December 24th 2019

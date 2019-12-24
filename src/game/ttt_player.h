@@ -23,38 +23,28 @@
  */
 
 /*
-    Name : ttt_game/ttt_board.c
+    Name : game/ttt_player.h
     Author : Antoine James Tournepiche
     Creation Date : December 20th 2019
     Last update : December 24th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
     
-    TicTacToe board source file
+    TicTacToe player header
 */
 
-#include <stdlib.h>
-#include "ttt_board.h"
+#ifndef _H_TTT_PLAYER_
+#define _H_TTT_PLAYER_
 
-ttt_board* ttt_create_board(void)
+typedef enum
 {
-    ttt_board* board_ptr = malloc(sizeof(ttt_board));
-    if (board_ptr == NULL)
-    {
-        return NULL;
-    }
-    return board_ptr;
-}
+    PLAYER_CROSS,
+    PLAYER_CIRCLE,
+    PLAYER_NULL,
+    // Used to indicates when no one get a frame or when it has no winner for now
+    PLAYER_UNDEFINED // Used to indicates when it has equality
+} ttt_player;
 
-void ttt_initialize_cells(ttt_board* board)
-{
-    for (int i = 0; i < 9; i++)
-    {
-        (*board).cell_owner[i] = PLAYER_NULL;
-    }
-}
-
-void ttt_destroy_board(ttt_board* board)
-{
-    free(board);
-}
+char* ttt_get_player_name(const ttt_player player);
+ttt_player ttt_get_opponent(const ttt_player player);
+#endif

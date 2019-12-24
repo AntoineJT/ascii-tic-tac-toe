@@ -23,42 +23,21 @@
  */
 
  /*
-     Name : ttt_game/ttt_input.c
+     Name : game/ttt_input.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
      Last update : December 24th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-     TicTacToe input source code file
+     TicTacToe input header
  */
 
-#include <stdio.h>
-#include "../boolean.h"
-#include "../buffer.h"
+#ifndef _H_TTT_INPUT_
+#define _H_TTT_INPUT_
+
 #include "ttt_board.h"
 #include "ttt_player.h"
-#include "ttt_game.h"
 
-void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell)
-{
-    bool valid;
-    do
-    {
-        fputs("Select the cell you want to play : ", stdout);
-        valid = scanf("%u", cell) && *cell < 10; // if the input is invalid or out of range, it will ask again to user
-        if (!valid)
-        {
-            flush_buffer();
-            puts("Invalid cell number!");
-        }
-        else
-        {
-            valid = ttt_play_cell(board, *cell, player);
-            if (!valid)
-            {
-                puts("This Cell is already owned!");
-            }
-        }
-    } while (!valid);
-}
+void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell);
+#endif

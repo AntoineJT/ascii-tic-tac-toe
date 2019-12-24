@@ -22,25 +22,39 @@
  *  SOFTWARE.
  */
 
- /*
-     Name : ttt_game/ttt_game.h
-     Author : Antoine James Tournepiche
-     Creation Date : December 24th 2019
-     Last update : December 24th 2019
-     Project : ASCII Tic Tac Toe
-     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
+/*
+    Name : game/ttt_board.c
+    Author : Antoine James Tournepiche
+    Creation Date : December 20th 2019
+    Last update : December 24th 2019
+    Project : ASCII Tic Tac Toe
+    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
+    
+    TicTacToe board source file
+*/
 
-     TicTacToe game logic header
- */
-
-#ifndef _H_TTT_GAME_
-#define _H_TTT_GAME_
-
-#include "../boolean.h"
+#include <stdlib.h>
 #include "ttt_board.h"
-#include "ttt_player.h"
 
-bool ttt_is_cell_line_claimed_by_one_player(ttt_board board, const ttt_player a, const ttt_player b, const ttt_player c);
-bool ttt_play_cell(ttt_board* board, const unsigned int cell, const ttt_player player);
-ttt_player ttt_get_winner(const ttt_board board);
-#endif
+ttt_board* ttt_create_board(void)
+{
+    ttt_board* board_ptr = malloc(sizeof(ttt_board));
+    if (board_ptr == NULL)
+    {
+        return NULL;
+    }
+    return board_ptr;
+}
+
+void ttt_initialize_cells(ttt_board* board)
+{
+    for (int i = 0; i < 9; i++)
+    {
+        (*board).cell_owner[i] = PLAYER_NULL;
+    }
+}
+
+void ttt_destroy_board(ttt_board* board)
+{
+    free(board);
+}
