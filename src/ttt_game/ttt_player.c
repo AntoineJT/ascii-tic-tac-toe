@@ -23,7 +23,7 @@
  */
 
  /*
-     Name : ttt_game/player.c
+     Name : ttt_game/ttt_player.c
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
      Last update : December 24th 2019
@@ -33,7 +33,7 @@
      TicTacToe player source code file
  */
 
-#include "player.h"
+#include "ttt_player.h"
 
 char* ttt_get_player_name(const ttt_player player)
 {

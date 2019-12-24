@@ -23,7 +23,7 @@
  */
 
 /*
-    Name : ttt_game/board.h
+    Name : ttt_game/ttt_board.h
     Author : Antoine James Tournepiche
     Creation Date : December 20th 2019
     Last update : December 24th 2019
@@ -36,7 +36,7 @@
 #ifndef _H_TTT_BOARD_
 #define _H_TTT_BOARD_
 
-#include "player.h"
+#include "ttt_player.h"
 
 typedef struct ttt_board
 {

@@ -40,10 +40,10 @@
 #include "buffer.h"
 #include "cmd_title.h"
 #include "input.h"
-#include "ttt_game/board.h"
-#include "ttt_game/player.h"
+#include "ttt_game/ttt_board.h"
+#include "ttt_game/ttt_player.h"
 #include "ttt_game/ttt_input.h"
-#include "ttt_game/game.h"
+#include "ttt_game/ttt_game.h"
 
 #define LAST_UPDATE "December 24th 2019"
 

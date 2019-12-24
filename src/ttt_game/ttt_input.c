@@ -36,9 +36,9 @@
 #include <stdio.h>
 #include "../boolean.h"
 #include "../buffer.h"
-#include "board.h"
-#include "player.h"
-#include "game.h"
+#include "ttt_board.h"
+#include "ttt_player.h"
+#include "ttt_game.h"
 
 void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell)
 {

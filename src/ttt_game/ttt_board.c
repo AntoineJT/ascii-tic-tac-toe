@@ -23,7 +23,7 @@
  */
 
 /*
-    Name : ttt_game/board.c
+    Name : ttt_game/ttt_board.c
     Author : Antoine James Tournepiche
     Creation Date : December 20th 2019
     Last update : December 24th 2019
@@ -34,7 +34,7 @@
 */
 
 #include <stdlib.h>
-#include "board.h"
+#include "ttt_board.h"
 
 ttt_board* ttt_create_board(void)
 {

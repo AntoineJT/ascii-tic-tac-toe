@@ -36,8 +36,8 @@
 #ifndef _H_TTT_INPUT_
 #define _H_TTT_INPUT_
 
-#include "board.h"
-#include "player.h"
+#include "ttt_board.h"
+#include "ttt_player.h"
 
 void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell);
 #endif

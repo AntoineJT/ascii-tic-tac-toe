@@ -23,7 +23,7 @@
  */
 
  /*
-     Name : ttt_game/game.h
+     Name : ttt_game/ttt_game.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
      Last update : December 24th 2019
@@ -37,8 +37,8 @@
 #define _H_TTT_GAME_
 
 #include "../boolean.h"
-#include "board.h"
-#include "player.h"
+#include "ttt_board.h"
+#include "ttt_player.h"
 
 bool ttt_is_cell_line_claimed_by_one_player(ttt_board board, const ttt_player a, const ttt_player b, const ttt_player c);
 bool ttt_play_cell(ttt_board* board, const unsigned int cell, const ttt_player player);
