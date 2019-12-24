@@ -53,27 +53,74 @@ bool ttt_play_cell(ttt_board* board, const unsigned int cell, const ttt_player p
     return true;
 }
 
+/*
+ *  hline -> horizontal line
+ *  vline -> vertical line
+ *  dline -> diagonal line
+ *  lr -> left to right, from top to bottom
+ *  rl -> right to left, from top to bottom
+ */
+static bool is_left_hline_claimed_by_one_player(const ttt_board board)
+{
+    return ttt_is_cell_line_claimed_by_one_player(board, 0, 1, 2);
+}
+
+static bool is_middle_hline_claimed_by_one_player(const ttt_board board)
+{
+    return ttt_is_cell_line_claimed_by_one_player(board, 3, 4, 5);
+}
+
+static bool is_right_hline_claimed_by_one_player(const ttt_board board)
+{
+    return ttt_is_cell_line_claimed_by_one_player(board, 6, 7, 8);
+}
+
+static bool is_left_vline_claimed_by_one_player(const ttt_board board)
+{
+    return ttt_is_cell_line_claimed_by_one_player(board, 0, 3, 6);
+}
+
+static bool is_middle_vline_claimed_by_one_player(const ttt_board board)
+{
+    return ttt_is_cell_line_claimed_by_one_player(board, 1, 4, 7);
+}
+
+static bool is_right_vline_claimed_by_one_player(const ttt_board board)
+{
+    return ttt_is_cell_line_claimed_by_one_player(board, 2, 5, 8);
+}
+
+static bool is_lr_dline_claimed_by_one_played(const ttt_board board)
+{
+    return ttt_is_cell_line_claimed_by_one_player(board, 0, 4, 8);
+}
+
+static bool is_rl_dline_claimed_by_one_player(const ttt_board board)
+{
+    return ttt_is_cell_line_claimed_by_one_player(board, 2, 4, 6);
+}
+
 ttt_player ttt_get_winner(const ttt_board board)
 {
     if (board.cell_owner[4] != PLAYER_NULL && (
-        (ttt_is_cell_line_claimed_by_one_player(board, 3, 4, 5)) // HLine 2
-        || (ttt_is_cell_line_claimed_by_one_player(board, 1, 4, 7)) // VLine 2
-        || (ttt_is_cell_line_claimed_by_one_player(board, 0, 4, 8)) // DLine '\'
-        || (ttt_is_cell_line_claimed_by_one_player(board, 2, 4, 6)) // DLine /
+        is_middle_hline_claimed_by_one_player(board) // HLine 2
+        || is_middle_vline_claimed_by_one_player(board) // VLine 2
+        || is_lr_dline_claimed_by_one_played(board) // DLine '\'
+        || is_rl_dline_claimed_by_one_player(board) // DLine '/'
         ))
     {
         return board.cell_owner[4];
     }
     else if (board.cell_owner[0] != PLAYER_NULL && (
-        (ttt_is_cell_line_claimed_by_one_player(board, 0, 1, 2)) // HLine 1
-        || (ttt_is_cell_line_claimed_by_one_player(board, 0, 3, 6)) // VLine 1
+        is_left_hline_claimed_by_one_player(board) // HLine 1
+        || is_left_vline_claimed_by_one_player(board) // VLine 1
         ))
     {
         return board.cell_owner[0];
     }
     else if (board.cell_owner[8] != PLAYER_NULL && (
-        (ttt_is_cell_line_claimed_by_one_player(board, 6, 7, 8)) // HLine 3
-        || (ttt_is_cell_line_claimed_by_one_player(board, 2, 5, 8)) // VLine 3
+        is_right_hline_claimed_by_one_player(board) // HLine 3
+        || is_right_vline_claimed_by_one_player(board) // VLine 3
         ))
     {
         return board.cell_owner[8];
