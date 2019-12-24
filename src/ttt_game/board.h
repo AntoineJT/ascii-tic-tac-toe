@@ -23,10 +23,10 @@
  */
 
 /*
-    Name : ttt/board.h
+    Name : ttt_game/board.h
     Author : Antoine James Tournepiche
     Creation Date : December 20th 2019
-    Last update : December 21st 2019
+    Last update : December 24th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
     

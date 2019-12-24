@@ -37,8 +37,8 @@
 #include <stdlib.h>
 #include "boolean.h"
 #include "equals.h"
-#include "ttt/board.h"
-#include "ttt/player.h"
+#include "ttt_game/board.h"
+#include "ttt_game/player.h"
 
 #define LAST_UPDATE "December 24th 2019"
 
