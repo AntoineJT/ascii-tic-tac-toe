@@ -40,7 +40,7 @@
 #include "ttt_board.h"
 #include "ttt_player.h"
 
-bool ttt_is_cell_line_claimed_by_one_player(ttt_board board, const ttt_player a, const ttt_player b, const ttt_player c);
+bool ttt_are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c);
 bool ttt_play_cell(ttt_board* board, const unsigned int cell, const ttt_player player);
 ttt_player ttt_get_winner(const ttt_board board);
 #endif
