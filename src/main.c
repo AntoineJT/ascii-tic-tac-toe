@@ -132,7 +132,10 @@ static void ttt_print_grid(ttt_board* board)
            (*board).grid[6], (*board).grid[7], (*board).grid[8]);
 }
 
-#define FLUSH_BUFFER while(getchar() != '\n');
+static void flush_buffer(void)
+{
+    while (getchar() != '\n');
+}
 
 static void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell)
 {
@@ -143,7 +146,7 @@ static void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned i
         valid = scanf("%u", cell) && *cell < 10; // if the input is invalid or out of range, it will ask again to user
         if (!valid)
         {
-            FLUSH_BUFFER
+            flush_buffer();
             puts("Invalid cell number!");
         }
         else
@@ -166,7 +169,7 @@ static bool input_bool(const char* str)
     do
     {
         printf("%s [Y/N]\n", str);
-        FLUSH_BUFFER
+        flush_buffer();
         valid = scanf("%[YyNn]", &choice);
         if (!valid)
         {
