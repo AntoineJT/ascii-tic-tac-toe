@@ -22,29 +22,22 @@
  *  SOFTWARE.
  */
 
-/*
-    Name : ttt_game/board.h
-    Author : Antoine James Tournepiche
-    Creation Date : December 20th 2019
-    Last update : December 24th 2019
-    Project : ASCII Tic Tac Toe
-    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
-    
-    TicTacToe board header
-*/
+ /*
+     Name : ttt_game/input.h
+     Author : Antoine James Tournepiche
+     Creation Date : December 24th 2019
+     Last update : December 24th 2019
+     Project : ASCII Tic Tac Toe
+     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-#ifndef _H_TTT_BOARD_
-#define _H_TTT_BOARD_
+     TicTacToe input header
+ */
 
+#ifndef _H_TTT_INPUT_
+#define _H_TTT_INPUT_
+
+#include "board.h"
 #include "player.h"
 
-typedef struct ttt_board
-{
-    ttt_player cell_owner[9];
-    char grid[9];
-} ttt_board;
-
-ttt_board* ttt_create_board(void);
-void ttt_initialize_cells(ttt_board* board);
-void ttt_destroy_board(ttt_board* board);
+void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell);
 #endif

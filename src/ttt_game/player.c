@@ -44,3 +44,16 @@ char* ttt_get_player_name(const ttt_player player)
     default: return "ERROR";
     }
 }
+
+ttt_player ttt_get_opponent(const ttt_player player)
+{
+    switch (player)
+    {
+    case PLAYER_CIRCLE: return PLAYER_CROSS;
+    case PLAYER_CROSS: return PLAYER_CIRCLE;
+    case PLAYER_NULL:
+    case PLAYER_UNDEFINED:
+    default:
+        return PLAYER_NULL;
+    }
+}

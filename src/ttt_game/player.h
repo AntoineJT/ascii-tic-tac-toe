@@ -46,4 +46,5 @@ typedef enum
 } ttt_player;
 
 char* ttt_get_player_name(const ttt_player player);
+ttt_player ttt_get_opponent(const ttt_player player);
 #endif

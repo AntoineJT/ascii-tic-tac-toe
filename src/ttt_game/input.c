@@ -22,29 +22,43 @@
  *  SOFTWARE.
  */
 
-/*
-    Name : ttt_game/board.h
-    Author : Antoine James Tournepiche
-    Creation Date : December 20th 2019
-    Last update : December 24th 2019
-    Project : ASCII Tic Tac Toe
-    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
-    
-    TicTacToe board header
-*/
+ /*
+     Name : ttt_game/input.c
+     Author : Antoine James Tournepiche
+     Creation Date : December 24th 2019
+     Last update : December 24th 2019
+     Project : ASCII Tic Tac Toe
+     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-#ifndef _H_TTT_BOARD_
-#define _H_TTT_BOARD_
+     TicTacToe input source code file
+ */
 
+#include <stdio.h>
+#include "../boolean.h"
+#include "../buffer.h"
+#include "board.h"
 #include "player.h"
+#include "game.h"
 
-typedef struct ttt_board
+void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell)
 {
-    ttt_player cell_owner[9];
-    char grid[9];
-} ttt_board;
-
-ttt_board* ttt_create_board(void);
-void ttt_initialize_cells(ttt_board* board);
-void ttt_destroy_board(ttt_board* board);
-#endif
+    bool valid;
+    do
+    {
+        fputs("Select the cell you want to play : ", stdout);
+        valid = scanf("%u", cell) && *cell < 10; // if the input is invalid or out of range, it will ask again to user
+        if (!valid)
+        {
+            flush_buffer();
+            puts("Invalid cell number!");
+        }
+        else
+        {
+            valid = ttt_play_cell(board, *cell, player);
+            if (!valid)
+            {
+                puts("This Cell is already owned!");
+            }
+        }
+    } while (!valid);
+}
