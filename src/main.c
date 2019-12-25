@@ -26,7 +26,7 @@
     Name : main.c
     Author : Antoine James Tournepiche
     Creation Date : October 21st 2018
-    Last update : December 24th 2019
+    Last update : December 25th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
   
@@ -36,12 +36,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "boolean.h"
-#include "equals.h"
-#include "buffer.h"
 #include "cmd_title.h"
 #include "input.h"
-#include "game/ttt_board.h"
-#include "game/ttt_player.h"
 #include "game/ttt_input.h"
 #include "game/ttt_game.h"
 #include "game/ttt_grid.h"
