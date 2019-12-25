@@ -44,43 +44,9 @@
 #include "game/ttt_player.h"
 #include "game/ttt_input.h"
 #include "game/ttt_game.h"
+#include "game/ttt_grid.h"
 
 #define LAST_UPDATE "December 24th 2019"
-
-static void ttt_refresh_grid(ttt_board* board)
-{
-    for (int i = 0; i < 9; i++)
-    {
-        switch ((*board).cell_owner[i])
-        {
-        case PLAYER_NULL: (*board).grid[i] = ' ';
-            break;
-        case PLAYER_CROSS: (*board).grid[i] = 'X';
-            break;
-        case PLAYER_CIRCLE: (*board).grid[i] = 'O';
-            break;
-        default: return;
-        }
-    }
-}
-
-static void ttt_print_grid(ttt_board* board)
-{
-    ttt_refresh_grid(board);
-    printf(" _________________ " "\n"
-           "|**0**|**1**|**2**|" "\n"
-           "|  %c  |  %c  |  %c  |" "\n"
-           "|_____|_____|_____|" "\n"
-           "|**3**|**4**|**5**|" "\n"
-           "|  %c  |  %c  |  %c  |" "\n"
-           "|_____|_____|_____|" "\n"
-           "|**6**|**7**|**8**|" "\n"
-           "|  %c  |  %c  |  %c  |" "\n"
-           "|_____|_____|_____|" "\n",
-           (*board).grid[0], (*board).grid[1], (*board).grid[2],
-           (*board).grid[3], (*board).grid[4], (*board).grid[5],
-           (*board).grid[6], (*board).grid[7], (*board).grid[8]);
-}
 
 int main(void)
 {
