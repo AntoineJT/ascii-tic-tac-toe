@@ -38,7 +38,7 @@
 #include "ttt_board.h"
 #include "ttt_player.h"
 
-bool ttt_are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c)
+static bool ttt_are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c)
 {
     return int_3_equals(board.cell_owner[a - 1], board.cell_owner[b - 1], board.cell_owner[c - 1]);
 }
