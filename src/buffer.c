@@ -26,7 +26,7 @@
      Name : buffer.c
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 24th 2019
+     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -38,6 +38,10 @@
 // https://stackoverflow.com/a/40191587
 void flush_buffer(void)
 {
-    int ch;
-    while ((ch = getchar()) != '\n' && ch != EOF);
+    int chr;
+    do
+    {
+        chr = getchar();
+    }
+    while (chr != '\n' && chr != EOF);
 }
