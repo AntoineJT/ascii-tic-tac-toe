@@ -43,18 +43,18 @@ bool ttt_are_cells_claimed_by_same_player(ttt_board board, const unsigned int a,
     return int_3_equals(board.cell_owner[a], board.cell_owner[b], board.cell_owner[c]);
 }
 
-static bool is_cell_owned(const ttt_board board, const unsigned int cell)
+static bool is_cell_owned(const ttt_board board, const unsigned int cell_number)
 {
-    return board.cell_owner[cell] != PLAYER_NULL;
+    return board.cell_owner[cell_number] != PLAYER_NULL;
 }
 
-bool ttt_play_cell(ttt_board* board, const unsigned int cell, const ttt_player player)
+bool ttt_play_cell(ttt_board* board, const unsigned int cell_number, const ttt_player player)
 {
-    if (is_cell_owned(*board, cell))
+    if (is_cell_owned(*board, cell_number))
     {
         return false;
     }
-    (*board).cell_owner[cell] = player;
+    (*board).cell_owner[cell_number] = player;
     return true;
 }
 
