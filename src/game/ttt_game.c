@@ -40,7 +40,7 @@
 
 bool ttt_are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c)
 {
-    return int_3_equals(board.cell_owner[a], board.cell_owner[b], board.cell_owner[c]);
+    return int_3_equals(board.cell_owner[a - 1], board.cell_owner[b - 1], board.cell_owner[c - 1]);
 }
 
 static bool is_cell_owned(const ttt_board board, const unsigned int cell_number)
@@ -67,42 +67,42 @@ bool ttt_play_cell(ttt_board* board, const unsigned int cell_number, const ttt_p
  */
 static bool is_left_hline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 0, 1, 2);
+    return ttt_are_cells_claimed_by_same_player(board, 1, 2, 3);
 }
 
 static bool is_middle_hline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 3, 4, 5);
+    return ttt_are_cells_claimed_by_same_player(board, 4, 5, 6);
 }
 
 static bool is_right_hline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 6, 7, 8);
+    return ttt_are_cells_claimed_by_same_player(board, 7, 8, 9);
 }
 
 static bool is_left_vline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 0, 3, 6);
+    return ttt_are_cells_claimed_by_same_player(board, 1, 4, 7);
 }
 
 static bool is_middle_vline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 1, 4, 7);
+    return ttt_are_cells_claimed_by_same_player(board, 2, 5, 8);
 }
 
 static bool is_right_vline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 2, 5, 8);
+    return ttt_are_cells_claimed_by_same_player(board, 3, 6, 9);
 }
 
 static bool is_lr_dline_claimed_by_one_played(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 0, 4, 8);
+    return ttt_are_cells_claimed_by_same_player(board, 1, 5, 9);
 }
 
 static bool is_rl_dline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 2, 4, 6);
+    return ttt_are_cells_claimed_by_same_player(board, 3, 5, 7);
 }
 
 ttt_player ttt_get_winner(const ttt_board board)
