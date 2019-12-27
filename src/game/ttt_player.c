@@ -22,23 +22,38 @@
  *  SOFTWARE.
  */
 
-/*
-    Name : boolean.h
-    Author : Antoine James Tournepiche
-    Creation date : January 24th 2019
-    Last update : December 20th 2019
-    Project : ASCII Tic Tac Toe
-    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
-    
-    boolean header of the ASCII TicTacToe
-*/
+ /*
+     Name : game/ttt_player.c
+     Author : Antoine James Tournepiche
+     Creation Date : December 24th 2019
+     Last update : December 24th 2019
+     Project : ASCII Tic Tac Toe
+     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-#ifndef _H_BOOLEAN_
-#define _H_BOOLEAN_
+     TicTacToe player source code file
+ */
 
-typedef enum
+#include "ttt_player.h"
+
+char* ttt_get_player_name(const ttt_player player)
 {
-    false = 0,
-    true = 1
-} bool;
-#endif
+    switch (player)
+    {
+    case PLAYER_CROSS: return "Cross";
+    case PLAYER_CIRCLE: return "Circle";
+    default: return "ERROR";
+    }
+}
+
+ttt_player ttt_get_opponent(const ttt_player player)
+{
+    switch (player)
+    {
+    case PLAYER_CIRCLE: return PLAYER_CROSS;
+    case PLAYER_CROSS: return PLAYER_CIRCLE;
+    case PLAYER_NULL:
+    case PLAYER_UNDEFINED:
+    default:
+        return PLAYER_NULL;
+    }
+}

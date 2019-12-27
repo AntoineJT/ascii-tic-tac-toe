@@ -22,23 +22,54 @@
  *  SOFTWARE.
  */
 
-/*
-    Name : boolean.h
-    Author : Antoine James Tournepiche
-    Creation date : January 24th 2019
-    Last update : December 20th 2019
-    Project : ASCII Tic Tac Toe
-    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
-    
-    boolean header of the ASCII TicTacToe
-*/
+ /*
+     Name : input.c
+     Author : Antoine James Tournepiche
+     Creation Date : December 24th 2019
+     Last update : December 27th 2019
+     Project : ASCII Tic Tac Toe
+     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-#ifndef _H_BOOLEAN_
-#define _H_BOOLEAN_
+     One utility file from ASCII Tic Tac Toe
+ */
 
-typedef enum
+#include <stdio.h>
+#include "boolean.h"
+#include "buffer.h"
+
+static bool is_yes_char(const char c)
 {
-    false = 0,
-    true = 1
-} bool;
-#endif
+    return c == 'Y' || c == 'y';
+}
+
+static bool is_no_char(const char c)
+{
+    return c == 'N' || c == 'n';
+}
+
+static bool is_yes_or_no_char(const char c)
+{
+    return is_yes_char(c) || is_no_char(c);
+}
+
+bool input_bool(const char* str)
+{
+    bool is_not_valid;
+    char choice;
+
+    do
+    {
+        printf("%s [Y/N]\n", str);
+        flush_buffer();
+
+        choice = (char) getchar();
+        is_not_valid = !is_yes_or_no_char(choice);
+
+        if (is_not_valid)
+        {
+            puts("Invalid choice!");
+        }
+    } while (is_not_valid);
+
+    return is_yes_char(choice);
+}

@@ -23,22 +23,28 @@
  */
 
 /*
-    Name : boolean.h
+    Name : game/ttt_player.h
     Author : Antoine James Tournepiche
-    Creation date : January 24th 2019
-    Last update : December 20th 2019
+    Creation Date : December 20th 2019
+    Last update : December 24th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
     
-    boolean header of the ASCII TicTacToe
+    TicTacToe player header
 */
 
-#ifndef _H_BOOLEAN_
-#define _H_BOOLEAN_
+#ifndef _H_TTT_PLAYER_
+#define _H_TTT_PLAYER_
 
 typedef enum
 {
-    false = 0,
-    true = 1
-} bool;
+    PLAYER_CROSS,
+    PLAYER_CIRCLE,
+    PLAYER_NULL,
+    // Used to indicates when no one get a frame or when it has no winner for now
+    PLAYER_UNDEFINED // Used to indicates when it has equality
+} ttt_player;
+
+char* ttt_get_player_name(const ttt_player player);
+ttt_player ttt_get_opponent(const ttt_player player);
 #endif

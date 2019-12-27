@@ -22,23 +22,43 @@
  *  SOFTWARE.
  */
 
-/*
-    Name : boolean.h
-    Author : Antoine James Tournepiche
-    Creation date : January 24th 2019
-    Last update : December 20th 2019
-    Project : ASCII Tic Tac Toe
-    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
-    
-    boolean header of the ASCII TicTacToe
-*/
+ /*
+     Name : game/ttt_input.c
+     Author : Antoine James Tournepiche
+     Creation Date : December 24th 2019
+     Last update : December 27th 2019
+     Project : ASCII Tic Tac Toe
+     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-#ifndef _H_BOOLEAN_
-#define _H_BOOLEAN_
+     TicTacToe input source code file
+ */
 
-typedef enum
+#include <stdio.h>
+#include "../boolean.h"
+#include "../buffer.h"
+#include "ttt_board.h"
+#include "ttt_player.h"
+#include "ttt_game.h"
+
+void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell_number)
 {
-    false = 0,
-    true = 1
-} bool;
-#endif
+    bool valid;
+    do
+    {
+        fputs("Select the cell you want to play : ", stdout);
+        valid = scanf("%u", cell_number) && *cell_number < 10; // if the input is invalid or out of range, it will ask again to user
+        if (!valid)
+        {
+            flush_buffer();
+            puts("Invalid cell number!");
+        }
+        else
+        {
+            valid = ttt_play_cell(board, *cell_number, player);
+            if (!valid)
+            {
+                puts("This Cell is already owned!");
+            }
+        }
+    } while (!valid);
+}

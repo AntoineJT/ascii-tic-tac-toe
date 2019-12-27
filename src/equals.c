@@ -22,23 +22,20 @@
  *  SOFTWARE.
  */
 
-/*
-    Name : boolean.h
-    Author : Antoine James Tournepiche
-    Creation date : January 24th 2019
-    Last update : December 20th 2019
-    Project : ASCII Tic Tac Toe
-    Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
-    
-    boolean header of the ASCII TicTacToe
-*/
+ /*
+     Name : equals.c
+     Author : Antoine James Tournepiche
+     Creation Date : December 21st 2019
+     Last update : December 21st 2019
+     Project : ASCII Tic Tac Toe
+     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
-#ifndef _H_BOOLEAN_
-#define _H_BOOLEAN_
+     One utility file from ASCII TicTacToe
+ */
 
-typedef enum
+#include "boolean.h"
+
+bool int_3_equals(const int a, const int b, const int c)
 {
-    false = 0,
-    true = 1
-} bool;
-#endif
+    return (a == b) && (b == c);
+}

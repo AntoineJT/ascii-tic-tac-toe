@@ -23,22 +23,39 @@
  */
 
 /*
-    Name : boolean.h
+    Name : game/ttt_board.c
     Author : Antoine James Tournepiche
-    Creation date : January 24th 2019
-    Last update : December 20th 2019
+    Creation Date : December 20th 2019
+    Last update : December 27th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
     
-    boolean header of the ASCII TicTacToe
+    TicTacToe board source file
 */
 
-#ifndef _H_BOOLEAN_
-#define _H_BOOLEAN_
+#include <stdlib.h>
+#include "ttt_board.h"
 
-typedef enum
+ttt_board* ttt_create_board(void)
 {
-    false = 0,
-    true = 1
-} bool;
-#endif
+    ttt_board* board_ptr = malloc(sizeof(ttt_board));
+    if (board_ptr == NULL)
+    {
+        return NULL;
+    }
+    ttt_reset_cells(board_ptr);
+    return board_ptr;
+}
+
+void ttt_reset_cells(ttt_board* board)
+{
+    for (int i = 0; i < 9; i++)
+    {
+        (*board).cell_owner[i] = PLAYER_NULL;
+    }
+}
+
+void ttt_destroy_board(ttt_board* board)
+{
+    free(board);
+}

@@ -1,12 +1,26 @@
-# Code::Blocks useless files
+# Code::Blocks generated files
 *.depend
 *.layout
+*.cbp
 
-# Binaries folders
-bin/
-obj/
+# Visual Studio generated files
+.vs/
+enc_temp_folder/
+
+# Premake generated project files
+*.sln
+*.vcxproj
+*.vcxproj.*
+
+# CLion generated files
+.idea/
 
 # Binaries
 *.o
 *.exe
 *.dll
+bin/
+obj/
+out/
+Debug/
+Release/
