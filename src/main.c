@@ -29,7 +29,7 @@
     Last update : December 25th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
-  
+    
     Main file of the ASCII TicTacToe
 */
 
@@ -43,6 +43,24 @@
 #include "game/ttt_grid.h"
 
 #define LAST_UPDATE "December 27th 2019"
+
+static bool is_game_draw(const ttt_player winner)
+{
+    return winner == PLAYER_UNDEFINED;
+}
+
+static bool has_no_winner_yet(const ttt_player winner)
+{
+    return winner == PLAYER_NULL;
+}
+
+// this is called restart_game and not reset_game because it does not reset the first player to play
+static void restart_game(ttt_board* board, ttt_player* winner, unsigned int* cell_number)
+{
+    ttt_reset_cells(board);
+    *winner = PLAYER_NULL;
+    *cell_number = -1;
+}
 
 int main(void)
 {
@@ -58,10 +76,9 @@ int main(void)
 
     while (1)
     {
-        // main loop
         ttt_print_grid(board);
 
-        if (winner == PLAYER_NULL)
+        if (has_no_winner_yet(winner))
         {
             printf("It's the turn of the %s player.\n", ttt_get_player_name(player));
             ttt_input_cell(board, player, &cell_number);
@@ -69,23 +86,18 @@ int main(void)
         }
         else
         {
-            if (winner == PLAYER_UNDEFINED)
+            if (is_game_draw(winner))
             {
                 puts("Equality !");
             }
             else
             {
-                player = ttt_get_opponent(player);
-                // Here is a fix to print the correct winner : here we don't want to print the next player to play, but the last player which has played : the winner
-                printf("The player %s has WIN!\n", ttt_get_player_name(player));
+                printf("The player %s has WIN!\n", ttt_get_player_name(winner));
             }
 
-            // reset code
             if (input_bool("Do you want to restart a game ?"))
             {
-                ttt_reset_cells(board);
-                winner = PLAYER_NULL;
-                cell_number = -1;
+                restart_game(board, &winner, &cell_number);
             }
             else
             {
