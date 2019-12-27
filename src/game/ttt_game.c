@@ -131,9 +131,9 @@ ttt_player ttt_get_winner(const ttt_board board)
         return board.cell_owner[8];
     }
 
-    for (int i = 0; i < 9; i++)
+    for (int cell_number = 0; cell_number < 9; cell_number++)
     {
-        if (!is_cell_owned(board, i))
+        if (!is_cell_owned(board, cell_number))
         {
             return PLAYER_NULL; // No winner for now
         }
