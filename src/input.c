@@ -52,14 +52,14 @@ static bool is_yes_or_no_char(const char c)
     return is_yes_char(c) || is_no_char(c);
 }
 
-bool input_bool(const char* str)
+bool input_bool(const char* label)
 {
     bool is_not_valid;
     char choice;
 
     do
     {
-        printf("%s [Y/N]\n", str);
+        printf("%s [Y/N]\n", label);
         flush_buffer();
 
         choice = (char) getchar();
