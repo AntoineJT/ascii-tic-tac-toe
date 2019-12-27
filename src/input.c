@@ -26,7 +26,7 @@
      Name : input.c
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 24th 2019
+     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -37,20 +37,39 @@
 #include "boolean.h"
 #include "buffer.h"
 
-// Run-Time Check Failure #2 - Stack around the variable 'choice' was corrupted. a eu lieu 
+static bool is_yes_char(const char c)
+{
+    return c == 'Y' || c == 'y';
+}
+
+static bool is_no_char(const char c)
+{
+    return c == 'N' || c == 'n';
+}
+
+static bool is_yes_or_no_char(const char c)
+{
+    return is_yes_char(c) || is_no_char(c);
+}
+
 bool input_bool(const char* str)
 {
-    bool valid;
+    bool is_not_valid;
     char choice;
+
     do
     {
         printf("%s [Y/N]\n", str);
         flush_buffer();
-        valid = scanf("%[YyNn]", &choice);
-        if (!valid)
+
+        choice = (char) getchar();
+        is_not_valid = !is_yes_or_no_char(choice);
+
+        if (is_not_valid)
         {
             puts("Invalid choice!");
         }
-    } while (!valid);
-    return (choice == 'Y' || choice == 'y');
+    } while (is_not_valid);
+
+    return is_yes_char(choice);
 }
