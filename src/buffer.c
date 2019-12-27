@@ -35,7 +35,9 @@
 
 #include <stdio.h>
 
+// https://stackoverflow.com/a/40191587
 void flush_buffer(void)
 {
-    while (getchar() != '\n');
+    int ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);
 }
