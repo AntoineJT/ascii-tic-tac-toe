@@ -35,30 +35,22 @@
 
 #include <stdio.h>
 #include "../boolean.h"
-#include "../buffer.h"
 #include "ttt_board.h"
 #include "ttt_player.h"
 #include "ttt_game.h"
+#include "../input.h"
 
 void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell_number)
 {
-    bool valid;
+    bool is_not_playable;
+
     do
     {
-        fputs("Select the cell you want to play : ", stdout);
-        valid = scanf("%u", cell_number) && *cell_number < 10; // if the input is invalid or out of range, it will ask again to user
-        if (!valid)
+        *cell_number = input_digit("Select the cell you want to play : ", "Invalid cell number!");
+        is_not_playable = !ttt_play_cell(board, *cell_number, player);
+        if (is_not_playable)
         {
-            flush_buffer();
-            puts("Invalid cell number!");
+            puts("This Cell is already owned!");
         }
-        else
-        {
-            valid = ttt_play_cell(board, *cell_number, player);
-            if (!valid)
-            {
-                puts("This Cell is already owned!");
-            }
-        }
-    } while (!valid);
+    } while (is_not_playable);
 }

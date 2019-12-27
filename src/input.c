@@ -73,3 +73,30 @@ bool input_bool(const char* str)
 
     return is_yes_char(choice);
 }
+
+static bool is_digit(const int number)
+{
+    return number >= 0 && number <= 9;
+}
+
+unsigned int input_digit(const char* label, const char* error_label)
+{
+    const char* message = label != NULL ?  label : "Input a digit : ";
+    const char* error_message = error_label != NULL ? error_label : "Invalid input : not a digit!";
+
+    unsigned int input;
+    bool is_not_valid;
+
+    do
+    {
+        printf("%s", message);
+
+        is_not_valid = !scanf("%u", &input) || !is_digit(input);
+        if (is_not_valid)
+        {
+            puts(error_message);
+        }
+    } while (is_not_valid);
+
+    return input;
+}
