@@ -26,7 +26,7 @@
      Name : game/ttt_grid.c
      Author : Antoine James Tournepiche
      Creation Date : December 25th 2019
-     Last update : December 25th 2019
+     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -53,9 +53,8 @@ void ttt_refresh_grid(ttt_board* board)
     }
 }
 
-void ttt_print_grid(ttt_board* board)
+static void only_print_grid(const ttt_board board)
 {
-    ttt_refresh_grid(board);
     printf(" _________________ " "\n"
         "|**0**|**1**|**2**|" "\n"
         "|  %c  |  %c  |  %c  |" "\n"
@@ -66,7 +65,13 @@ void ttt_print_grid(ttt_board* board)
         "|**6**|**7**|**8**|" "\n"
         "|  %c  |  %c  |  %c  |" "\n"
         "|_____|_____|_____|" "\n",
-        (*board).grid[0], (*board).grid[1], (*board).grid[2],
-        (*board).grid[3], (*board).grid[4], (*board).grid[5],
-        (*board).grid[6], (*board).grid[7], (*board).grid[8]);
+        board.grid[0], board.grid[1], board.grid[2],
+        board.grid[3], board.grid[4], board.grid[5],
+        board.grid[6], board.grid[7], board.grid[8]);
+}
+
+void ttt_print_grid(ttt_board* board)
+{
+    ttt_refresh_grid(board);
+    only_print_grid(*board);
 }
