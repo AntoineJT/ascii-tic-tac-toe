@@ -42,7 +42,7 @@
 #include "game/ttt_game.h"
 #include "game/ttt_grid.h"
 
-#define LAST_UPDATE "December 24th 2019"
+#define LAST_UPDATE "December 27th 2019"
 
 int main(void)
 {

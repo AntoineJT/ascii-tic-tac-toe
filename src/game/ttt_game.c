@@ -26,7 +26,7 @@
      Name : game/ttt_game.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 24th 2019
+     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -43,9 +43,14 @@ bool ttt_are_cells_claimed_by_same_player(ttt_board board, const unsigned int a,
     return int_3_equals(board.cell_owner[a], board.cell_owner[b], board.cell_owner[c]);
 }
 
+static bool is_cell_owned(const ttt_board board, const unsigned int cell)
+{
+    return board.cell_owner[cell] != PLAYER_NULL;
+}
+
 bool ttt_play_cell(ttt_board* board, const unsigned int cell, const ttt_player player)
 {
-    if ((*board).cell_owner[cell] != PLAYER_NULL)
+    if (is_cell_owned(*board, cell))
     {
         return false;
     }
@@ -111,29 +116,27 @@ ttt_player ttt_get_winner(const ttt_board board)
     {
         return board.cell_owner[4];
     }
-    else if (board.cell_owner[0] != PLAYER_NULL && (
+    if (board.cell_owner[0] != PLAYER_NULL && (
         is_left_hline_claimed_by_one_player(board) // HLine 1
         || is_left_vline_claimed_by_one_player(board) // VLine 1
-        ))
+    ))
     {
         return board.cell_owner[0];
     }
-    else if (board.cell_owner[8] != PLAYER_NULL && (
+    if (board.cell_owner[8] != PLAYER_NULL && (
         is_right_hline_claimed_by_one_player(board) // HLine 3
         || is_right_vline_claimed_by_one_player(board) // VLine 3
-        ))
+    ))
     {
         return board.cell_owner[8];
     }
-    else
+
+    for (int i = 0; i < 9; i++)
     {
-        for (int i = 0; i < 9; i++)
+        if (!is_cell_owned(board, i))
         {
-            if (board.cell_owner[i] == PLAYER_NULL)
-            {
-                return PLAYER_NULL; // No winner for now
-            }
+            return PLAYER_NULL; // No winner for now
         }
-        return PLAYER_UNDEFINED; // Equality
     }
+    return PLAYER_UNDEFINED; // Equality
 }
