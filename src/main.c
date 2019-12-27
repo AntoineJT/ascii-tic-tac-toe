@@ -52,9 +52,6 @@ int main(void)
         "October 21st 2018 - " LAST_UPDATE "\n");
 
     ttt_board* board = ttt_create_board();
-
-    ttt_initialize_cells(board);
-
     ttt_player player = PLAYER_CROSS; // First player to play
     ttt_player winner = PLAYER_NULL;
     unsigned int cell_number;
@@ -86,7 +83,7 @@ int main(void)
             // reset code
             if (input_bool("Do you want to restart a game ?"))
             {
-                ttt_initialize_cells(board);
+                ttt_reset_cells(board);
                 winner = PLAYER_NULL;
                 cell_number = -1;
             }

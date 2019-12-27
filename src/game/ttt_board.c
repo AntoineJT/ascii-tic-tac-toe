@@ -26,7 +26,7 @@
     Name : game/ttt_board.c
     Author : Antoine James Tournepiche
     Creation Date : December 20th 2019
-    Last update : December 24th 2019
+    Last update : December 27th 2019
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
     
@@ -43,10 +43,11 @@ ttt_board* ttt_create_board(void)
     {
         return NULL;
     }
+    ttt_reset_cells(board_ptr);
     return board_ptr;
 }
 
-void ttt_initialize_cells(ttt_board* board)
+void ttt_reset_cells(ttt_board* board)
 {
     for (int i = 0; i < 9; i++)
     {
