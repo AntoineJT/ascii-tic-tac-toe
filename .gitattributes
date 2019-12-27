@@ -1,0 +1,7 @@
+# Fix C++ linguist detection
+*.c linguist-language=C
+*.h linguist-language=C
+
+# Mark premake generated Makefile as generated
+*.make linguist-generated=true
+Makefile linguist-generated=true
