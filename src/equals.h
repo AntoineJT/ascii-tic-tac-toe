@@ -35,5 +35,8 @@
 
 #ifndef _H_EQUALS_
 #define _H_EQUALS_
+
+#include "boolean.h"
+
 bool int_3_equals(const int a, const int b, const int c);
 #endif
