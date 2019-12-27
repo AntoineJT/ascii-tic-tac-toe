@@ -3,6 +3,8 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/AntoineJT/ascii-tic-tac-toe.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/AntoineJT/ascii-tic-tac-toe/alerts/)
 [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/AntoineJT/ascii-tic-tac-toe.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/AntoineJT/ascii-tic-tac-toe/context:cpp)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7015b9c9656144cc9c31f079de1da236)](https://www.codacy.com/manual/antoinejt.serveur/ascii-tic-tac-toe?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AntoineJT/ascii-tic-tac-toe&amp;utm_campaign=Badge_Grade)
+![GitHub](https://img.shields.io/github/license/AntoineJT/ascii-tic-tac-toe)
+[![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat)](https://gitmoji.carloscuesta.me)
 
 This is a simple C project : a tic tac toe game playable into the console.
 
