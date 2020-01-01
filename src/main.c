@@ -42,7 +42,7 @@
 #include "game/ttt_game.h"
 #include "game/ttt_grid.h"
 
-#define LAST_UPDATE "December 27th 2019"
+#define LAST_UPDATE "January 1st 2020"
 
 static bool is_game_draw(const ttt_player winner)
 {

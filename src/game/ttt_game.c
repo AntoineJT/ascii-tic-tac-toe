@@ -26,7 +26,7 @@
      Name : game/ttt_game.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 27th 2019
+     Last update : January 1st 2020
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -38,7 +38,7 @@
 #include "ttt_board.h"
 #include "ttt_player.h"
 
-static bool ttt_are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c)
+static bool are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c)
 {
     return int_3_equals(board.cell_owner[a - 1], board.cell_owner[b - 1], board.cell_owner[c - 1]);
 }
@@ -67,42 +67,42 @@ bool ttt_play_cell(ttt_board* board, const unsigned int cell_number, const ttt_p
  */
 static bool is_left_hline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 1, 2, 3);
+    return are_cells_claimed_by_same_player(board, 1, 2, 3);
 }
 
 static bool is_middle_hline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 4, 5, 6);
+    return are_cells_claimed_by_same_player(board, 4, 5, 6);
 }
 
 static bool is_right_hline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 7, 8, 9);
+    return are_cells_claimed_by_same_player(board, 7, 8, 9);
 }
 
 static bool is_left_vline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 1, 4, 7);
+    return are_cells_claimed_by_same_player(board, 1, 4, 7);
 }
 
 static bool is_middle_vline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 2, 5, 8);
+    return are_cells_claimed_by_same_player(board, 2, 5, 8);
 }
 
 static bool is_right_vline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 3, 6, 9);
+    return are_cells_claimed_by_same_player(board, 3, 6, 9);
 }
 
 static bool is_lr_dline_claimed_by_one_played(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 1, 5, 9);
+    return are_cells_claimed_by_same_player(board, 1, 5, 9);
 }
 
 static bool is_rl_dline_claimed_by_one_player(const ttt_board board)
 {
-    return ttt_are_cells_claimed_by_same_player(board, 3, 5, 7);
+    return are_cells_claimed_by_same_player(board, 3, 5, 7);
 }
 
 ttt_player ttt_get_winner(const ttt_board board)
