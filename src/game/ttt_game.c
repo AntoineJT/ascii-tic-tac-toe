@@ -95,7 +95,7 @@ static bool is_right_vline_claimed_by_one_player(const ttt_board board)
     return are_cells_claimed_by_same_player(board, 3, 6, 9);
 }
 
-static bool is_lr_dline_claimed_by_one_played(const ttt_board board)
+static bool is_lr_dline_claimed_by_one_player(const ttt_board board)
 {
     return are_cells_claimed_by_same_player(board, 1, 5, 9);
 }
@@ -110,7 +110,7 @@ ttt_player ttt_get_winner(const ttt_board board)
     if (board.cell_owner[4] != PLAYER_NULL && (
         is_middle_hline_claimed_by_one_player(board) // HLine 2
         || is_middle_vline_claimed_by_one_player(board) // VLine 2
-        || is_lr_dline_claimed_by_one_played(board) // DLine '\'
+        || is_lr_dline_claimed_by_one_player(board) // DLine '\'
         || is_rl_dline_claimed_by_one_player(board) // DLine '/'
         ))
     {
