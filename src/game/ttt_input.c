@@ -26,7 +26,7 @@
      Name : game/ttt_input.c
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 27th 2019
+     Last update : January 25th 2020
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -40,14 +40,14 @@
 #include "ttt_game.h"
 #include "../input.h"
 
-void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell_number)
+void ttt_input_and_play_cell(ttt_board* board, const ttt_player player)
 {
     bool is_not_playable;
 
     do
     {
-        *cell_number = input_digit("Select the cell you want to play : ", "Invalid cell number!");
-        is_not_playable = !ttt_play_cell(board, *cell_number, player);
+        const unsigned int cell_number = input_digit("Select the cell you want to play : ", "Invalid cell number!");
+        is_not_playable = !ttt_play_cell(board, cell_number, player);
         if (is_not_playable)
         {
             puts("This Cell is already owned!");

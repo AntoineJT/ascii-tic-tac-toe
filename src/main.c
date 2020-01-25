@@ -26,7 +26,7 @@
     Name : main.c
     Author : Antoine James Tournepiche
     Creation Date : October 21st 2018
-    Last update : December 25th 2019
+    Last update : January 25th 2020
     Project : ASCII Tic Tac Toe
     Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
     
@@ -42,7 +42,7 @@
 #include "game/ttt_game.h"
 #include "game/ttt_grid.h"
 
-#define LAST_UPDATE "January 1st 2020"
+#define LAST_UPDATE "January 25th 2020"
 
 static bool is_game_draw(const ttt_player winner)
 {
@@ -81,7 +81,7 @@ int main(void)
         if (has_no_winner_yet(winner))
         {
             printf("It's the turn of the %s player.\n", ttt_get_player_name(player));
-            ttt_input_cell(board, player, &cell_number);
+            ttt_input_and_play_cell(board, player);
             winner = ttt_get_winner(*board);
         }
         else
