@@ -26,7 +26,7 @@
      Name : game/ttt_game.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : January 1st 2020
+     Last update : January 25th 2020
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -37,24 +37,36 @@
 #include "../equals.h"
 #include "ttt_board.h"
 #include "ttt_player.h"
+#include <assert.h>
 
 static bool are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c)
 {
+    assert(a > 0 && a < 10);
+    assert(b > 0 && b < 10);
+    assert(c > 0 && c < 10);
     return int_3_equals(board.cell_owner[a - 1], board.cell_owner[b - 1], board.cell_owner[c - 1]);
 }
 
 static bool is_cell_owned(const ttt_board board, const unsigned int cell_number)
 {
+    assert(cell_number < 9);
     return board.cell_owner[cell_number] != PLAYER_NULL;
+}
+
+static void set_cell_owner(ttt_board* board, const ttt_player player, const unsigned int cell_number)
+{
+    assert(cell_number < 9);
+    (*board).cell_owner[cell_number] = player;
 }
 
 bool ttt_play_cell(ttt_board* board, const unsigned int cell_number, const ttt_player player)
 {
+    assert(cell_number < 9);
     if (is_cell_owned(*board, cell_number))
     {
         return false;
     }
-    (*board).cell_owner[cell_number] = player;
+    set_cell_owner(board, player, cell_number);
     return true;
 }
 
