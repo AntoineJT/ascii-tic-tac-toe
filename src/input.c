@@ -33,7 +33,7 @@
  */
 
 #include <stdio.h>
-#include "boolean.h"
+#include <stdbool.h>
 #include "buffer.h"
 
 static bool is_yes_char(const char c)

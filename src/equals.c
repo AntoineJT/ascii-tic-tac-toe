@@ -32,7 +32,7 @@
      One utility file from ASCII TicTacToe
  */
 
-#include "boolean.h"
+#include <stdbool.h>
 
 bool int_3_equals(const int a, const int b, const int c)
 {
