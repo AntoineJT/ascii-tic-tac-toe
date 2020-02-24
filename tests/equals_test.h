@@ -1,17 +1,15 @@
-spec("equals")
+it("should work for similar numbers")
 {
-    it("should work for similar numbers")
-    {
-        check(int_3_equals(3, 3, 3));
-    }
+    puts("equals.c"); // workaround
+    check(int_3_equals(3, 3, 3));
+}
 
-    it("should not work for 2 differents numbers")
-    {
-        check(!int_3_equals(3, 2, 2));
-    }
+it("should not work for 2 differents numbers")
+{
+    check(!int_3_equals(3, 2, 2));
+}
 
-    it("should not work for 3 different numbers")
-    {
-        check(!int_3_equals(3, 2, 1));
-    }
+it("should not work for 3 different numbers")
+{
+    check(!int_3_equals(3, 2, 1));
 }
