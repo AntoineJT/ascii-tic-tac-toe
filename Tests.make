@@ -35,8 +35,8 @@ endef
 
 ifeq ($(config),debug)
 TARGETDIR = bin/Debug
-TARGET = $(TARGETDIR)/ASCII TicTacToe - Tests.exe
-OBJDIR = obj/Debug/ASCII TicTacToe - Tests
+TARGET = $(TARGETDIR)/Tests.exe
+OBJDIR = obj/Debug/Tests
 DEFINES += -DDEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g
@@ -44,8 +44,8 @@ ALL_LDFLAGS += $(LDFLAGS)
 
 else ifeq ($(config),release)
 TARGETDIR = bin/Release
-TARGET = $(TARGETDIR)/ASCII TicTacToe - Tests.exe
-OBJDIR = obj/Release/ASCII TicTacToe - Tests
+TARGET = $(TARGETDIR)/Tests.exe
+OBJDIR = obj/Release/Tests
 DEFINES += -DNDEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2
@@ -82,7 +82,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJECTS) $(LDDEPS) | $(TARGETDIR)
 	$(PRELINKCMDS)
-	@echo Linking ASCII TicTacToe - Tests
+	@echo Linking Tests
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -103,7 +103,7 @@ else
 endif
 
 clean:
-	@echo Cleaning ASCII TicTacToe - Tests
+	@echo Cleaning Tests
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(OBJDIR)

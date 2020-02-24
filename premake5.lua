@@ -2,7 +2,7 @@
 workspace "ASCII TicTacToe"
    configurations { "Debug", "Release" }
 
-project "ASCII TicTacToe - Bin"
+project "Bin"
    kind "ConsoleApp"
    language "C"
    targetdir "bin/%{cfg.buildcfg}"
@@ -18,7 +18,7 @@ project "ASCII TicTacToe - Bin"
       defines { "NDEBUG" }
       optimize "On"
 
-project "ASCII TicTacToe - Tests"
+project "Tests"
 	kind "ConsoleApp"
 	language "C"
 	targetdir "bin/%{cfg.buildcfg}"
@@ -26,11 +26,11 @@ project "ASCII TicTacToe - Tests"
 	files { "**.h", "**.c" }
 	removefiles { "src/main.c" }
 	
-	   filter "configurations:Debug"
-      defines { "DEBUG" }
-      symbols "On"
+	filter "configurations:Debug"
+	   defines { "DEBUG" }
+	   symbols "On"
 
-   filter "configurations:Release"
+	filter "configurations:Release"
       defines { "NDEBUG" }
       optimize "On"
 	  

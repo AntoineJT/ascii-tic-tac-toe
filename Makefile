@@ -9,38 +9,38 @@ ifndef verbose
 endif
 
 ifeq ($(config),debug)
-  ASCII_TicTacToe___Bin_config = debug
-  ASCII_TicTacToe___Tests_config = debug
+  Bin_config = debug
+  Tests_config = debug
 
 else ifeq ($(config),release)
-  ASCII_TicTacToe___Bin_config = release
-  ASCII_TicTacToe___Tests_config = release
+  Bin_config = release
+  Tests_config = release
 
 else
   $(error "invalid configuration $(config)")
 endif
 
-PROJECTS := ASCII\ TicTacToe\ -\ Bin ASCII\ TicTacToe\ -\ Tests
+PROJECTS := Bin Tests
 
 .PHONY: all clean help $(PROJECTS) 
 
 all: $(PROJECTS)
 
-ASCII\ TicTacToe\ -\ Bin:
-ifneq (,$(ASCII_TicTacToe___Bin_config))
-	@echo "==== Building ASCII TicTacToe - Bin ($(ASCII_TicTacToe___Bin_config)) ===="
-	@${MAKE} --no-print-directory -C . -f ASCII\ TicTacToe\ -\ Bin.make config=$(ASCII_TicTacToe___Bin_config)
+Bin:
+ifneq (,$(Bin_config))
+	@echo "==== Building Bin ($(Bin_config)) ===="
+	@${MAKE} --no-print-directory -C . -f Bin.make config=$(Bin_config)
 endif
 
-ASCII\ TicTacToe\ -\ Tests:
-ifneq (,$(ASCII_TicTacToe___Tests_config))
-	@echo "==== Building ASCII TicTacToe - Tests ($(ASCII_TicTacToe___Tests_config)) ===="
-	@${MAKE} --no-print-directory -C . -f ASCII\ TicTacToe\ -\ Tests.make config=$(ASCII_TicTacToe___Tests_config)
+Tests:
+ifneq (,$(Tests_config))
+	@echo "==== Building Tests ($(Tests_config)) ===="
+	@${MAKE} --no-print-directory -C . -f Tests.make config=$(Tests_config)
 endif
 
 clean:
-	@${MAKE} --no-print-directory -C . -f ASCII\ TicTacToe\ -\ Bin.make clean
-	@${MAKE} --no-print-directory -C . -f ASCII\ TicTacToe\ -\ Tests.make clean
+	@${MAKE} --no-print-directory -C . -f Bin.make clean
+	@${MAKE} --no-print-directory -C . -f Tests.make clean
 
 help:
 	@echo "Usage: make [config=name] [target]"
@@ -52,7 +52,7 @@ help:
 	@echo "TARGETS:"
 	@echo "   all (default)"
 	@echo "   clean"
-	@echo "   ASCII TicTacToe - Bin"
-	@echo "   ASCII TicTacToe - Tests"
+	@echo "   Bin"
+	@echo "   Tests"
 	@echo ""
 	@echo "For more information, see https://github.com/premake/premake-core/wiki"
