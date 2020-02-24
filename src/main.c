@@ -35,7 +35,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "boolean.h"
+#include <stdbool.h>
 #include "cmd_title.h"
 #include "input.h"
 #include "game/ttt_input.h"

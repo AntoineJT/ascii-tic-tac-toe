@@ -35,7 +35,7 @@
 
 #ifndef _H_INPUT_
 #define _H_INPUT_
-#include "boolean.h"
+#include <stdbool.h>
 
 bool input_bool(const char* label);
 unsigned int input_digit(const char* label, const char* error_label);

@@ -33,11 +33,11 @@
      TicTacToe game logic source code file
  */
 
-#include "../boolean.h"
+#include <assert.h>
+#include <stdbool.h>
 #include "../equals.h"
 #include "ttt_board.h"
 #include "ttt_player.h"
-#include <assert.h>
 
 static bool are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c)
 {

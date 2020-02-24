@@ -34,7 +34,7 @@
  */
 
 #include <stdio.h>
-#include "../boolean.h"
+#include <stdbool.h>
 #include "ttt_board.h"
 #include "ttt_player.h"
 #include "ttt_game.h"
