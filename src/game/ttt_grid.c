@@ -40,13 +40,13 @@ void ttt_refresh_grid(ttt_board* board)
 {
     for (int i = 0; i < 9; i++)
     {
-        switch ((*board).cell_owner[i])
+        switch (board->cell_owner[i])
         {
-        case PLAYER_NULL: (*board).grid[i] = ' ';
+        case PLAYER_NULL: board->grid[i] = ' ';
             break;
-        case PLAYER_CROSS: (*board).grid[i] = 'X';
+        case PLAYER_CROSS: board->grid[i] = 'X';
             break;
-        case PLAYER_CIRCLE: (*board).grid[i] = 'O';
+        case PLAYER_CIRCLE: board->grid[i] = 'O';
             break;
         default: return;
         }

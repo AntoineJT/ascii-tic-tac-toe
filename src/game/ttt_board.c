@@ -51,7 +51,7 @@ void ttt_reset_cells(ttt_board* board)
 {
     for (int i = 0; i < 9; i++)
     {
-        (*board).cell_owner[i] = PLAYER_NULL;
+        board->cell_owner[i] = PLAYER_NULL;
     }
 }
 

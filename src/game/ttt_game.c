@@ -56,7 +56,7 @@ static bool is_cell_owned(const ttt_board board, const unsigned int cell_number)
 static void set_cell_owner(ttt_board* board, const ttt_player player, const unsigned int cell_number)
 {
     assert(cell_number < 9);
-    (*board).cell_owner[cell_number] = player;
+    board->cell_owner[cell_number] = player;
 }
 
 bool ttt_play_cell(ttt_board* board, const unsigned int cell_number, const ttt_player player)
