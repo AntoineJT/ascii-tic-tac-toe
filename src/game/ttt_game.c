@@ -26,7 +26,6 @@
      Name : game/ttt_game.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : January 25th 2020
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 

@@ -26,7 +26,6 @@
      Name : game/ttt_grid.c
      Author : Antoine James Tournepiche
      Creation Date : December 25th 2019
-     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
