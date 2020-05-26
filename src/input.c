@@ -74,9 +74,9 @@ bool input_bool(const char* label)
     return is_yes_char(choice);
 }
 
-static bool is_digit(const int number)
+static bool is_digit(const unsigned int number)
 {
-    return number >= 0 && number <= 9;
+    return number <= 9;
 }
 
 unsigned int input_digit(const char* label, const char* error_label)
