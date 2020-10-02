@@ -33,8 +33,17 @@
  */
 
 #include <stdio.h>
-#include "boolean.h"
-#include "buffer.h"
+#include <stdbool.h>
+
+// https://stackoverflow.com/a/40191587
+static void flush_buffer(void)
+{
+    int chr;
+    do
+    {
+        chr = getchar();
+    } while (chr != '\n' && chr != EOF);
+}
 
 static bool is_yes_char(const char c)
 {
