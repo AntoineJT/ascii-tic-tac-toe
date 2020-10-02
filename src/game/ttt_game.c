@@ -34,16 +34,22 @@
 
 #include <assert.h>
 #include <stdbool.h>
-#include "../equals.h"
 #include "ttt_board.h"
 #include "ttt_player.h"
+
+static bool all_equals(const int a, const int b, const int c)
+{
+    return (a == b) && (b == c);
+}
+
 
 static bool are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c)
 {
     assert(a > 0 && a < 10);
     assert(b > 0 && b < 10);
     assert(c > 0 && c < 10);
-    return int_3_equals(board.cell_owner[a - 1], board.cell_owner[b - 1], board.cell_owner[c - 1]);
+
+    return all_equals(board.cell_owner[a - 1], board.cell_owner[b - 1], board.cell_owner[c - 1]);
 }
 
 static bool is_cell_owned(const ttt_board board, const unsigned int cell_number)
