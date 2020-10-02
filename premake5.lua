@@ -1,7 +1,8 @@
 -- premake5.lua
 workspace "ASCII TicTacToe"
    configurations { "Debug", "Release" }
-   platforms { "Win32", "Win64" }
+   filter "action:not gmake*"
+      platforms { "Win32", "Win64" }
 
 project "ASCII TicTacToe"
    kind "ConsoleApp"
@@ -18,10 +19,11 @@ project "ASCII TicTacToe"
       defines { "NDEBUG" }
       optimize "On"
 
-   filter "platforms:Win32"
-      system "Windows"
-      architecture "x32"
+   filter "action:not gmake*"
+      filter "platforms:Win32"
+         system "Windows"
+         architecture "x32"
 
-  filter "platforms:Win64"
-      system "Windows"
-      architecture "x64"
+      filter "platforms:Win64"
+         system "Windows"
+         architecture "x64"
