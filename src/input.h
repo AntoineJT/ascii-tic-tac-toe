@@ -26,7 +26,6 @@
      Name : input.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 24th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -37,5 +36,6 @@
 #define _H_INPUT_
 #include "boolean.h"
 
-bool input_bool(const char* str);
+bool input_bool(const char* label);
+unsigned int input_digit(const char* label, const char* error_label);
 #endif

@@ -26,7 +26,6 @@
      Name : game/ttt_input.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -39,5 +38,5 @@
 #include "ttt_board.h"
 #include "ttt_player.h"
 
-void ttt_input_cell(ttt_board* board, const ttt_player player, unsigned int* cell_number);
+void ttt_input_and_play_cell(ttt_board* board, const ttt_player player);
 #endif

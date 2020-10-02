@@ -26,7 +26,6 @@
      Name : game/ttt_game.h
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -40,7 +39,6 @@
 #include "ttt_board.h"
 #include "ttt_player.h"
 
-bool ttt_are_cells_claimed_by_same_player(ttt_board board, const unsigned int a, const unsigned int b, const unsigned int c);
 bool ttt_play_cell(ttt_board* board, const unsigned int cell_number, const ttt_player player);
 ttt_player ttt_get_winner(const ttt_board board);
 #endif

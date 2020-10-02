@@ -26,7 +26,6 @@
      Name : input.c
      Author : Antoine James Tournepiche
      Creation Date : December 24th 2019
-     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -52,14 +51,14 @@ static bool is_yes_or_no_char(const char c)
     return is_yes_char(c) || is_no_char(c);
 }
 
-bool input_bool(const char* str)
+bool input_bool(const char* label)
 {
     bool is_not_valid;
     char choice;
 
     do
     {
-        printf("%s [Y/N]\n", str);
+        printf("%s [Y/N]\n", label);
         flush_buffer();
 
         choice = (char) getchar();
@@ -72,4 +71,31 @@ bool input_bool(const char* str)
     } while (is_not_valid);
 
     return is_yes_char(choice);
+}
+
+static bool is_digit(const unsigned int number)
+{
+    return number <= 9;
+}
+
+unsigned int input_digit(const char* label, const char* error_label)
+{
+    const char* message = label != NULL ?  label : "Input a digit : ";
+    const char* error_message = error_label != NULL ? error_label : "Invalid input : not a digit!";
+
+    unsigned int input;
+    bool is_not_valid;
+
+    do
+    {
+        printf("%s", message);
+
+        is_not_valid = !scanf("%u", &input) || !is_digit(input);
+        if (is_not_valid)
+        {
+            puts(error_message);
+        }
+    } while (is_not_valid);
+
+    return input;
 }

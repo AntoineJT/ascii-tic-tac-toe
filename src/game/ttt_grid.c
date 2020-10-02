@@ -26,7 +26,6 @@
      Name : game/ttt_grid.c
      Author : Antoine James Tournepiche
      Creation Date : December 25th 2019
-     Last update : December 27th 2019
      Project : ASCII Tic Tac Toe
      Project sources : https://github.com/AntoineJT/ascii-tic-tac-toe
 
@@ -40,13 +39,13 @@ void ttt_refresh_grid(ttt_board* board)
 {
     for (int i = 0; i < 9; i++)
     {
-        switch ((*board).cell_owner[i])
+        switch (board->cell_owner[i])
         {
-        case PLAYER_NULL: (*board).grid[i] = ' ';
+        case PLAYER_NULL: board->grid[i] = ' ';
             break;
-        case PLAYER_CROSS: (*board).grid[i] = 'X';
+        case PLAYER_CROSS: board->grid[i] = 'X';
             break;
-        case PLAYER_CIRCLE: (*board).grid[i] = 'O';
+        case PLAYER_CIRCLE: board->grid[i] = 'O';
             break;
         default: return;
         }
